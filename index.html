@@ -592,6 +592,31 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="card-title">Payment Details</div>
             <div id="paymentRows"></div>
           </div>
+
+          <div class="card">
+            <div class="card-title">Signatures</div>
+            <p style="font-size:12px; color:var(--muted); margin:0 0 12px 0;">
+              Type each signatory's name. The PDF will show a signature line with the printed name underneath.
+            </p>
+            <div class="field-row">
+              <div class="field">
+                <label class="field-label">Salesman</label>
+                <input type="text" data-field="signatures.salesman" placeholder="Salesman name" />
+              </div>
+              <div class="field">
+                <label class="field-label">Sales Supervisor</label>
+                <input type="text" data-field="signatures.salesSupervisor" placeholder="Supervisor name" />
+              </div>
+              <div class="field">
+                <label class="field-label">Sales Manager</label>
+                <input type="text" data-field="signatures.salesManager" placeholder="Manager name" />
+              </div>
+              <div class="field">
+                <label class="field-label">Production Manager</label>
+                <input type="text" data-field="signatures.productionManager" placeholder="Production manager name" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -907,9 +932,28 @@ textarea { resize: vertical; min-height: 60px; }
   }
   .pay-value .box.checked { background: #c00000; }
 
+  /* Signatures */
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin-top: 6pt; }
+  .sig-grid > div {
+    border: 1.5pt solid #000;
+    padding: 6pt 6pt;
+    font-weight: 700;
+    font-size: 11.1pt;
+    min-height: 50pt;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+  .sig-grid > div:not(:nth-child(4n+1)) { border-left: none; }
+  .sig-name {
+    margin-top: 24pt;
+    border-top: 1.5pt solid #000;
+    padding-top: 3pt;
+    font-size: 11.1pt;
+    text-align: center;
+  }
+
   .vspace { height: 6pt; }
   /* Watermark overlay (exported image) */
-  .page { position: relative; }
+  .page { position: relative; overflow: hidden; }
   .watermark {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -918,6 +962,7 @@ textarea { resize: vertical; min-height: 60px; }
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
   .watermark::before {
     content: "";
@@ -1139,7 +1184,30 @@ textarea { resize: vertical; min-height: 60px; }
       OTHER
       {{paymentOtherVal}}
     </div>
-  </div></div>
+  </div>
+
+  <div class="sig-grid">
+    <div>
+      <div style="min-height:10pt;"></div>
+      <div style="text-align:center; padding: 4pt 8pt;">
+        </div>
+      <div class="sig-name">SALESMAN</div>
+    </div>
+    <div>
+      <div style="min-height:30pt;"></div>
+      <div class="sig-name">SALES SUPERVISOR</div>
+    </div>
+    <div>
+      <div style="min-height:30pt;"></div>
+      <div class="sig-name">SALES MANAGER</div>
+    </div>
+    <div>
+      <div style="min-height:30pt;"></div>
+      <div class="sig-name">PRODUCTION MANAGER</div>
+    </div>
+  </div>
+
+</div>
 </div>
 </body>
 </html>
@@ -1198,6 +1266,7 @@ textarea { resize: vertical; min-height: 60px; }
       paymentAdvance: { selected: false, value: '' },
       paymentBalance: { selected: false, value: '' },
       paymentOther: { selected: false, value: '' },
+      signatures: { salesman: '', salesSupervisor: '', salesManager: '', productionManager: '' }
     };
   }
 
@@ -1786,7 +1855,7 @@ textarea { resize: vertical; min-height: 60px; }
       document.body.appendChild(container);
 
       // Wait for fonts and images
-      const target = container.querySelector('.print-wrapper') || container.querySelector('.page') || container;
+      const target = container.querySelector('.page') || container.querySelector('.print-wrapper') || container;
 
       const waitForReady = function(cb) {
         try {
@@ -1809,17 +1878,18 @@ textarea { resize: vertical; min-height: 60px; }
       };
 
       waitForReady(function() {
-        window.html2canvas(target, {
-          scale: 4,  // 4x for highest quality
-          backgroundColor: '#ffffff',
-          useCORS: true,
-          allowTaint: false,
-          logging: false,
-          width: target.scrollWidth,
-          height: target.scrollHeight,
-          windowWidth: target.scrollWidth,
-          windowHeight: target.scrollHeight
-        }).then(function(canvas) {
+        var exportWidthPx = Math.ceil(595 * 96 / 72); // 595pt -> 794px
+          window.html2canvas(target, {
+            scale: 4,  // 4x for highest quality
+            backgroundColor: '#ffffff',
+            useCORS: true,
+            allowTaint: false,
+            logging: false,
+            width: exportWidthPx,
+            height: target.scrollHeight,
+            windowWidth: exportWidthPx,
+            windowHeight: target.scrollHeight
+          }).then(function(canvas) {
           canvas.toBlob(function(blob) {
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
