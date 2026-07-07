@@ -235,6 +235,7 @@ textarea { resize: vertical; min-height: 60px; }
 .radio-pill:hover { border-color: var(--primary); }
 .radio-pill input { margin: 0; }
 .radio-pill.selected { border-color: var(--primary); background: var(--accent); color: var(--primary); font-weight: 500; }
+.radio-pill.blue-selected { border-color: #0066cc; background: rgba(0, 102, 204, 0.10); color: #0066cc; font-weight: 500; }
 
 /* ===== Buttons ===== */
 .btn {
@@ -314,8 +315,7 @@ textarea { resize: vertical; min-height: 60px; }
         <input type="text" id="filenameInput" class="filename-input auto-mode"
                placeholder="Special Order Production Form"
                autocomplete="off" spellcheck="false" />
-        <span class="filename-suffix">.png</span>
-        <span class="filename-badge auto-on" id="filenameAutoBadge">Auto</span>
+                <span class="filename-badge auto-on" id="filenameAutoBadge">Auto</span>
         <button type="button" class="filename-btn" id="filenameAutoBtn"
                 title="Re-derive filename from Customer / Item / Destination">&olarr;</button>
         <button type="button" class="filename-btn" id="filenameCopyBtn"
@@ -429,7 +429,7 @@ textarea { resize: vertical; min-height: 60px; }
               <label class="radio-pill"><input type="checkbox" name="productType" value="sandwichWrap" /> SANDWICH WRAP</label>
               <label class="radio-pill"><input type="checkbox" name="productType" value="twisted" /> TWISTED HANDLE</label>
               <label class="radio-pill"><input type="checkbox" name="productType" value="flat" /> FLAT HANDLE</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="othersPaperCup" /> OTHERS (PAPER CUP)</label>
+              <label class="radio-pill" data-blue-highlight><input type="checkbox" name="productType" value="othersPaperCup" /> (PAPER CUP)</label>
               <label class="radio-pill"><input type="checkbox" name="productType" value="others" /> OTHERS</label>
             </div>
           </div>
@@ -635,6 +635,7 @@ textarea { resize: vertical; min-height: 60px; }
   }
 
   .red { color: #c00000; font-weight: 700; font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif; font-size: 14pt; }
+  .blue { color: #0066cc; font-weight: 700; font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif; font-size: 14pt; }
   /* Highlighted destination value (exported image) */
   .dest-highlight {
     display: inline-block;
@@ -806,6 +807,7 @@ textarea { resize: vertical; min-height: 60px; }
     display: inline-block;
     flex-shrink: 0;
   }
+  .blue-box { background: #0066cc; }
   .opt-box.empty { background: #fff; }
 
   /* Dimensions */
@@ -1034,8 +1036,8 @@ textarea { resize: vertical; min-height: 60px; }
 
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sos}}"></span><span class="{{spec.productType.sos.red}}">SOS</span></span></div>
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sandwichWrap}}"></span><span class="{{spec.productType.sandwichWrap.red}}">SANDWICH WRAP</span></span></div>
-    <div class="spec-cell" style="font-size:10pt;"><span class="opt"><span class="opt-box {{spec.productType.othersPaperCup}}"></span><span class="{{spec.productType.othersPaperCup.red}}" style="white-space:nowrap;">OTHERS (PAPER CUP)</span></span></div>
-    <div class="spec-cell"></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.othersPaperCup}} {{spec.productType.othersPaperCup.box}}"></span><span class="{{spec.productType.othersPaperCup.blue}}" style="white-space:nowrap;">(PAPER CUP)</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.others}}"></span><span class="{{spec.productType.others.red}}">OTHERS</span></span></div>
 
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.white}}"></span><span class="{{spec.paperType.white.red}}">WHITE</span></span></div>
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.brown}}"></span><span class="{{spec.paperType.brown.red}}">BROWN</span></span></div>
@@ -1044,7 +1046,7 @@ textarea { resize: vertical; min-height: 60px; }
 
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.mg}}"></span><span class="{{spec.paperType.mg.red}}">MG</span></span></div>
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.aluPaper}}"></span><span class="{{spec.paperType.aluPaper.red}}">ALU.+PAPER</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.others}}"></span><span class="{{spec.productType.others.red}}">OTHERS</span></span></div>
+    <div class="spec-cell"></div>
     <div class="spec-cell"></div>
   </div>
 
@@ -1402,10 +1404,17 @@ textarea { resize: vertical; min-height: 60px; }
     Object.keys(specGroups).forEach(function(group) {
       const arr = Array.isArray(form[group]) ? form[group] : [];
       specGroups[group].forEach(function(opt) {
-        const sel = arr.indexOf(opt) !== -1 ? '' : 'empty';
-        const redCls = arr.indexOf(opt) !== -1 ? 'red' : '';
+        const isSelected = arr.indexOf(opt) !== -1;
+        const sel = isSelected ? '' : 'empty';
         tokens['{{spec.' + group + '.' + opt + '}}'] = sel;
-        tokens['{{spec.' + group + '.' + opt + '.red}}'] = redCls;
+        if (opt === 'othersPaperCup') {
+          // (PAPER CUP) uses a blue highlight instead of red.
+          tokens['{{spec.' + group + '.' + opt + '.red}}'] = '';
+          tokens['{{spec.' + group + '.' + opt + '.blue}}'] = isSelected ? 'blue' : '';
+          tokens['{{spec.' + group + '.' + opt + '.box}}'] = isSelected ? 'blue-box' : '';
+        } else {
+          tokens['{{spec.' + group + '.' + opt + '.red}}'] = isSelected ? 'red' : '';
+        }
       });
     });
 
@@ -1652,8 +1661,18 @@ textarea { resize: vertical; min-height: 60px; }
   function updateRadioStyles(group) {
     group.querySelectorAll('.radio-pill').forEach(function(pill) {
       const input = pill.querySelector('input');
-      if (input && input.checked) pill.classList.add('selected');
-      else pill.classList.remove('selected');
+      if (input && input.checked) {
+        if (pill.hasAttribute('data-blue-highlight')) {
+          pill.classList.add('blue-selected');
+          pill.classList.remove('selected');
+        } else {
+          pill.classList.add('selected');
+          pill.classList.remove('blue-selected');
+        }
+      } else {
+        pill.classList.remove('selected');
+        pill.classList.remove('blue-selected');
+      }
     });
   }
 
