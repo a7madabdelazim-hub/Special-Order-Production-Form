@@ -36,7 +36,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 button { font-family: inherit; cursor: pointer; }
-input, textarea, select { font-family: inherit; font-size: 14px; }
+input, textarea, select { font-family: inherit; font-size: 16px; }
 a { color: var(--primary); }
 
 /* ===== Layout ===== */
@@ -62,14 +62,14 @@ a { color: var(--primary); }
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 8px; padding: 10px 14px 14px 14px;
 }
-.btn {
+.header-row2 .btn {
   padding: 10px 14px; border-radius: 14px;
   font-size: 14px; font-weight: 600; border: none;
   display: flex; align-items: center; justify-content: center; gap: 6px;
   transition: all 0.15s ease; cursor: pointer;
   letter-spacing: -0.1px; font-family: inherit;
 }
-.btn:active { transform: scale(0.95); }
+.header-row2 .btn:active { transform: scale(0.95); }
 .btn-glass {
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(10px) saturate(150%);
@@ -110,7 +110,7 @@ a { color: var(--primary); }
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--panel);
-  font-size: 14px; font-weight: 500;
+  font-size: 16px; font-weight: 500;
   color: var(--text);
   transition: border-color 0.15s, box-shadow 0.15s;
 }
@@ -120,10 +120,6 @@ a { color: var(--primary); }
   box-shadow: 0 0 0 3px rgba(192,0,0,0.1);
 }
 .filename-input.auto-mode { background: rgba(255,255,255,0.7); }
-.filename-suffix {
-  font-size: 13px; color: var(--muted); font-weight: 500;
-  flex-shrink: 0; user-select: none;
-}
 .filename-badge {
   font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
   padding: 3px 8px; border-radius: 10px;
@@ -199,6 +195,7 @@ label.field-label {
   display: block; font-size: 12px; font-weight: 500;
   color: var(--text); margin-bottom: 4px;
 }
+.req-star { color: #c00000; font-weight: 700; margin-left: 2px; }
 input[type="text"], input[type="number"], input[type="date"], textarea, select {
   width: 100%; padding: 8px 10px; border: 1px solid var(--border);
   border-radius: 6px; background: var(--panel); color: var(--text);
@@ -219,7 +216,6 @@ textarea { resize: vertical; min-height: 60px; }
   font-size: 11px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px 0;
 }
-.card-subtitle { font-size: 13px; font-weight: 600; margin: 0 0 10px 0; }
 
 /* ===== Radio groups ===== */
 .radio-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
@@ -242,14 +238,7 @@ textarea { resize: vertical; min-height: 60px; }
   font-size: 13px; font-weight: 500; transition: all 0.15s;
 }
 .btn:hover { background: var(--bg); border-color: #c4c7cc; }
-.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-.btn-primary:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
-.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn-ghost { background: transparent; border-color: transparent; }
-.btn-ghost:hover { background: var(--bg); }
 .btn-sm { padding: 4px 8px; font-size: 12px; }
-.btn-danger { color: var(--primary); }
-.btn-danger:hover { background: var(--accent); border-color: var(--primary); }
 
 /* ===== Preview panel (desktop) ===== */
 .preview-panel {
@@ -283,19 +272,6 @@ textarea { resize: vertical; min-height: 60px; }
 }
 .toast.error { background: var(--primary); }
 @keyframes toastIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
-
-/* ===== Modal ===== */
-.modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
-  display: flex; align-items: center; justify-content: center; z-index: 50;
-}
-.modal {
-  background: var(--panel); border-radius: 8px; padding: 20px;
-  max-width: 400px; width: 90%; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-}
-.modal h3 { margin: 0 0 8px 0; font-size: 16px; }
-.modal p { margin: 0 0 16px 0; color: var(--muted); font-size: 13px; }
-.modal-actions { display: flex; justify-content: flex-end; gap: 8px; }
 
 .item-row { border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-bottom: 10px; }
 .item-row h4 { margin: 0 0 8px 0; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
@@ -344,16 +320,16 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="card-title">Customer Information</div>
             <div class="field-row">
               <div class="field">
-                <label class="field-label">ACC. #</label>
+                <label class="field-label">ACC. # <span class="req-star">*</span></label>
                 <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="accNo" />
               </div>
               <div class="field">
-                <label class="field-label">Customer Name</label>
+                <label class="field-label">Customer Name <span class="req-star">*</span></label>
                 <input type="text" data-field="customerName" />
               </div>
             </div>
             <div class="field">
-              <label class="field-label">Order Type</label>
+              <label class="field-label">Order Type <span class="req-star">*</span></label>
               <div class="radio-row" id="orderTypeGroup" data-radio-group="orderType">
                 <label class="radio-pill"><input type="radio" name="orderType" value="new" /> NEW ORDER</label>
                 <label class="radio-pill"><input type="radio" name="orderType" value="reorder" /> REORDER</label>
@@ -375,11 +351,11 @@ textarea { resize: vertical; min-height: 60px; }
             </div>
             <div class="field-row">
               <div class="field">
-                <label class="field-label">Expected Delivery Date</label>
+                <label class="field-label">Expected Delivery Date <span class="req-star">*</span></label>
                 <input type="date" data-field="expectedDeliveryDate" />
               </div>
               <div class="field">
-                <label class="field-label">Destination</label>
+                <label class="field-label">Destination <span class="req-star">*</span></label>
                 <input type="text" data-field="destination" />
               </div>
             </div>
@@ -405,7 +381,7 @@ textarea { resize: vertical; min-height: 60px; }
 
           <div class="card">
             <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-              <div class="card-title" style="margin:0; white-space:nowrap;">Artwork Changes:</div>
+              <div class="card-title" style="margin:0; white-space:nowrap;">Artwork Changes: <span class="req-star">*</span></div>
               <div class="radio-row" id="artworkChangesGroup" style="flex:1;">
                 <label class="radio-pill"><input type="radio" name="artworkChanges" value="yes" /> YES</label>
                 <label class="radio-pill"><input type="radio" name="artworkChanges" value="no" /> NO</label>
@@ -418,7 +394,7 @@ textarea { resize: vertical; min-height: 60px; }
         <!-- ===== Specs Tab ===== -->
         <div class="tab-panel" data-panel="specs">
           <div class="card">
-            <div class="card-title">Product Type</div>
+            <div class="card-title">Product Type <span class="req-star">*</span></div>
             <div class="radio-row" data-check-group="productType">
               <label class="radio-pill"><input type="checkbox" name="productType" value="satchel" /> SATCHEL</label>
               <label class="radio-pill"><input type="checkbox" name="productType" value="sos" /> SOS</label>
@@ -432,7 +408,7 @@ textarea { resize: vertical; min-height: 60px; }
           </div>
 
           <div class="card">
-            <div class="card-title">Paper Type</div>
+            <div class="card-title">Paper Type <span class="req-star">*</span></div>
             <div class="radio-row" data-check-group="paperType">
               <label class="radio-pill"><input type="checkbox" name="paperType" value="white" /> WHITE</label>
               <label class="radio-pill"><input type="checkbox" name="paperType" value="brown" /> BROWN</label>
@@ -447,15 +423,15 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="card-title">Dimensions</div>
             <div class="field-row-4">
               <div class="field">
-                <label class="field-label">Length (cm)</label>
+                <label class="field-label">Length (cm) <span class="req-star">*</span></label>
                 <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="lengthCm" />
               </div>
               <div class="field">
-                <label class="field-label">Width (cm)</label>
+                <label class="field-label">Width (cm) <span class="req-star">*</span></label>
                 <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="widthCm" />
               </div>
               <div class="field">
-                <label class="field-label">Side Gusset (cm)</label>
+                <label class="field-label">Side Gusset (cm) <span class="req-star">*</span></label>
                 <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="sideGussetCm" />
               </div>
               <div class="field">
@@ -507,7 +483,7 @@ textarea { resize: vertical; min-height: 60px; }
             <div class="card-title">Design &amp; Approval</div>
             <div class="field-row">
               <div class="field">
-                <label class="field-label">Any Change in Design?</label>
+                <label class="field-label">Any Change in Design? <span class="req-star">*</span></label>
                 <div class="radio-row" data-radio-group="anyChangeInDesign">
                   <label class="radio-pill"><input type="radio" name="anyChangeInDesign" value="yes" /> YES</label>
                   <label class="radio-pill"><input type="radio" name="anyChangeInDesign" value="no" /> NO</label>
@@ -515,7 +491,7 @@ textarea { resize: vertical; min-height: 60px; }
                 </div>
               </div>
               <div class="field">
-                <label class="field-label">Artwork Attached?</label>
+                <label class="field-label">Artwork Attached? <span class="req-star">*</span></label>
                 <div class="radio-row" data-radio-group="artworkAttached">
                   <label class="radio-pill"><input type="radio" name="artworkAttached" value="yes" /> YES</label>
                   <label class="radio-pill"><input type="radio" name="artworkAttached" value="no" /> NO</label>
@@ -523,7 +499,7 @@ textarea { resize: vertical; min-height: 60px; }
                 </div>
               </div>
               <div class="field">
-                <label class="field-label">Sample Approval Attached?</label>
+                <label class="field-label">Sample Approval Attached? <span class="req-star">*</span></label>
                 <div class="radio-row" data-radio-group="sampleAttached">
                   <label class="radio-pill"><input type="radio" name="sampleAttached" value="yes" /> YES</label>
                   <label class="radio-pill"><input type="radio" name="sampleAttached" value="no" /> NO</label>
@@ -531,7 +507,7 @@ textarea { resize: vertical; min-height: 60px; }
                 </div>
               </div>
               <div class="field">
-                <label class="field-label">Colour Shade Approval?</label>
+                <label class="field-label">Colour Shade Approval? <span class="req-star">*</span></label>
                 <div class="radio-row" data-radio-group="colourShadeApproval">
                   <label class="radio-pill"><input type="radio" name="colourShadeApproval" value="yes" /> YES</label>
                   <label class="radio-pill"><input type="radio" name="colourShadeApproval" value="no" /> NO</label>
@@ -561,7 +537,7 @@ textarea { resize: vertical; min-height: 60px; }
             </p>
             <div class="field-row">
               <div class="field">
-                <label class="field-label">Salesman</label>
+                <label class="field-label">Salesman <span class="req-star">*</span></label>
                 <input type="text" data-field="signatures.salesman" placeholder="Salesman name" />
               </div>
               <div class="field">
@@ -667,26 +643,33 @@ textarea { resize: vertical; min-height: 60px; }
     margin: 0 50pt 4pt 50pt;
   }
 
-  /* Bands */
+  /* Bands -- liquid glass: dark glossy gradient with a light diagonal sheen,
+     rounded corners and a soft shadow. Uses gradients/box-shadow only (both
+     fully supported by the html2canvas export engine, unlike backdrop-filter
+     blur, which the export cannot render). */
   .band {
-    background: #000;
+    background: linear-gradient(135deg, #050505 0%, #2c2c31 38%, #0a0a0a 52%, #3d3d43 78%, #0d0d0d 100%);
     color: #fff;
     font-weight: 700;
     text-align: center;
     padding: 4pt 6pt;
     border: 1.5pt solid #000;
+    border-radius: 5pt;
+    box-shadow: 0 2pt 5pt rgba(0,0,0,0.35), inset 0 1pt 0 rgba(255,255,255,0.18);
   }
   .band-large { font-size: 18pt; padding: 8pt 6pt; letter-spacing: 0.5pt; line-height: 1.1; }
   .band-med { font-size: 12pt; }
 
   /* Customer info */
   .customer-band {
-    background: #000;
+    background: linear-gradient(135deg, #050505 0%, #2c2c31 38%, #0a0a0a 52%, #3d3d43 78%, #0d0d0d 100%);
     color: #fff;
     font-weight: 700;
     font-size: 18pt;
     padding: 5pt 10pt;
     border: 1.5pt solid #000;
+    border-radius: 5pt;
+    box-shadow: 0 2pt 5pt rgba(0,0,0,0.35), inset 0 1pt 0 rgba(255,255,255,0.18);
     margin-top: 6pt;
   }
   .ci-grid {
@@ -1251,27 +1234,6 @@ textarea { resize: vertical; min-height: 60px; }
     orderName: ''
   };
 
-  const STORAGE_KEY = 'meshraq_orders_v2';
-
-  // ===== Storage =====
-  function readOrders() {
-    // (No-op kept for backward compatibility -- saved-orders UI is removed.)
-    return [];
-  }
-  function migrateOldForm(form) {
-    // v1 stored productType / paperType as a single string; v2 stores arrays.
-    if (!Array.isArray(form.productType)) {
-      form.productType = form.productType ? [String(form.productType)] : [];
-    }
-    if (!Array.isArray(form.paperType)) {
-      form.paperType = form.paperType ? [String(form.paperType)] : [];
-    }
-    return form;
-  }
-  function writeOrders(arr) {
-    // No-op: saved-orders UI removed. Kept for backward compatibility.
-  }
-
   // ===== Helpers =====
   function escapeHtml(s) {
     return String(s == null ? '' : s)
@@ -1305,7 +1267,6 @@ textarea { resize: vertical; min-height: 60px; }
     }
     return upper;
   }
-  function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
   function getNested(obj, path) {
     return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
   }
@@ -1314,9 +1275,6 @@ textarea { resize: vertical; min-height: 60px; }
     const last = keys.pop();
     const target = keys.reduce((o, k) => (o[k] = o[k] || {}), obj);
     target[last] = value;
-  }
-  function uid() {
-    return 'ord_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
   }
   function toast(msg, type) {
     const t = document.createElement('div');
@@ -1517,7 +1475,7 @@ textarea { resize: vertical; min-height: 60px; }
       row.className = 'item-row';
       row.innerHTML = '<h4>Row ' + (idx + 1) + '</h4>' +
         '<div class="field-row">' +
-          '<div class="field" style="grid-column: span 2;"><label class="field-label">Product / Item</label>' +
+          '<div class="field" style="grid-column: span 2;"><label class="field-label">Product / Item' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
             '<input type="text" data-item="' + idx + '.product" value="' + escapeHtml(item.product) + '"></div>' +
         '</div>' +
         '<div class="field-row-4">' +
@@ -1564,7 +1522,7 @@ textarea { resize: vertical; min-height: 60px; }
     state.form.colors.forEach(function(c, idx) {
       const field = document.createElement('div');
       field.className = 'field';
-      field.innerHTML = '<label class="field-label">Color ' + (idx + 1) + '</label>' +
+      field.innerHTML = '<label class="field-label">Color ' + (idx + 1) + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
         '<input type="text" data-color="' + idx + '" value="' + escapeHtml(c.code) + '">';
       container.appendChild(field);
     });
@@ -1854,8 +1812,48 @@ textarea { resize: vertical; min-height: 60px; }
     renderPayments();
   }
 
+  // ===== Required-field validation =====
+  function getRequiredFieldChecks() {
+    return [
+      { test: () => !!(state.form.accNo || '').trim(), label: 'ACC. #', tab: 'customer' },
+      { test: () => !!(state.form.customerName || '').trim(), label: 'Customer Name', tab: 'customer' },
+      { test: () => !!state.form.orderType, label: 'Order Type', tab: 'customer' },
+      { test: () => !!(state.form.expectedDeliveryDate || '').trim(), label: 'Expected Delivery Date', tab: 'customer' },
+      { test: () => !!(state.form.destination || '').trim(), label: 'Destination', tab: 'customer' },
+      { test: () => !!(state.form.items[0] && state.form.items[0].product && state.form.items[0].product.trim()), label: 'Product / Item', tab: 'product' },
+      { test: () => !!state.form.artworkChanges, label: 'Artwork Changes', tab: 'product' },
+      { test: () => Array.isArray(state.form.productType) && state.form.productType.length > 0, label: 'Product Type', tab: 'specs' },
+      { test: () => Array.isArray(state.form.paperType) && state.form.paperType.length > 0, label: 'Paper Type', tab: 'specs' },
+      { test: () => !!(state.form.lengthCm || '').trim(), label: 'Length (cm)', tab: 'specs' },
+      { test: () => !!(state.form.widthCm || '').trim(), label: 'Width (cm)', tab: 'specs' },
+      { test: () => !!(state.form.sideGussetCm || '').trim(), label: 'Side Gusset (cm)', tab: 'specs' },
+      { test: () => !!(state.form.colors[0] && state.form.colors[0].code && state.form.colors[0].code.trim()), label: 'Color 1', tab: 'colors' },
+      { test: () => !!state.form.anyChangeInDesign, label: 'Any Change in Design?', tab: 'colors' },
+      { test: () => !!state.form.artworkAttached, label: 'Artwork Attached?', tab: 'colors' },
+      { test: () => !!state.form.sampleAttached, label: 'Sample Approval Attached?', tab: 'colors' },
+      { test: () => !!state.form.colourShadeApproval, label: 'Colour Shade Approval?', tab: 'colors' },
+      { test: () => !!(state.form.signatures.salesman || '').trim(), label: 'Salesman', tab: 'payment' }
+    ];
+  }
+  function switchToTab(tabName) {
+    const tabBtn = document.querySelector('#tabs .tab[data-tab="' + tabName + '"]');
+    if (tabBtn) tabBtn.click();
+  }
+  // Returns true if all required fields are filled. If not, shows a blocking
+  // message listing what's missing and jumps to the first missing field's tab.
+  function validateRequiredFields() {
+    const missing = getRequiredFieldChecks().filter(f => !f.test());
+    if (missing.length === 0) return true;
+    switchToTab(missing[0].tab);
+    const list = missing.map(f => '\u2022 ' + f.label).join('\n');
+    window.alert('Please fill in the required fields (marked with *) before exporting:\n\n' + list);
+    toast('Missing required fields — export cancelled', 'error');
+    return false;
+  }
+
   // ===== Export PNG (high-quality image via html2canvas) =====
   function exportPng() {
+    if (!validateRequiredFields()) return;
     const html = renderPdfHtml(state.form);
     const fileName = currentFilename();
 
