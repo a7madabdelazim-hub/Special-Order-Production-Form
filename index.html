@@ -40,11 +40,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 a { color: var(--primary); }
 
 /* ===== Layout ===== */
-.app {
-  display: flex; flex-direction: column;
-  height: 100vh;
-  height: 100dvh; /* iOS Safari: excludes the address bar so the layout doesn't jump/overshoot */
-}
+.app { display: flex; flex-direction: column; min-height: 100vh; }
 .header {
   position: sticky; top: 0; z-index: 40;
   padding: 8px 12px;
@@ -98,7 +94,7 @@ a { color: var(--primary); }
 .body { flex: 1; display: flex; min-height: 0; }
 
 /* ===== Form panel ===== */
-.form-panel { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.form-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 /* ===== Export Filename Preview (read-only, fully automatic) ===== */
 .editing-bar {
   display: flex; align-items: center; gap: 8px;
@@ -118,41 +114,50 @@ a { color: var(--primary); }
 .form-body { flex: 1; overflow-y: auto; padding: 20px; }
 
 /* ===== Tabs (Apple liquid glass pills) ===== */
-/* iOS Safari will NOT keep an element sticky if that same element also has
-   its own overflow-x/y set to auto/scroll -- the sticky positioning is
-   silently dropped. So the sticky behavior lives on an outer wrapper with
-   no overflow of its own, and the horizontal tab-scrolling lives on the
-   inner .tabs pill. */
-.tabs-sticky {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  margin-bottom: 16px;
-}
 .tabs {
-  display: flex; gap: 2px;
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.6);
+  display: flex; gap: 4px;
+  padding: 5px;
+  margin-bottom: 16px;
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+  /* Bold gold rim -- deliberately different from the app's red accent so
+     the tab bar reads as its own distinct "liquid glass" surface. */
+  border: 2px solid rgba(201, 162, 39, 0.6);
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(201,162,39,0.18), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 .tab {
-  background: transparent; border: 0; padding: 8px 14px;
-  font-size: 13px; color: #6e6e73; border-radius: 12px;
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.22) 100%);
+  border: 1px solid rgba(255,255,255,0.55);
+  padding: 9px 16px;
+  font-size: 13px; color: #6e6e73; border-radius: 14px;
   white-space: nowrap; flex-shrink: 0;
-  transition: all 0.2s ease; font-family: inherit; cursor: pointer;
+  transition: all 0.25s ease; font-family: inherit; cursor: pointer;
   font-weight: 500;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.04);
+  overflow: hidden;
 }
-.tab:hover { color: #1d1d1f; }
+/* Diagonal glass sheen overlay -- gives each pill a glossy, liquid look
+   that's distinct from the flat .btn / .radio-pill surfaces elsewhere. */
+.tab::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+.tab:hover {
+  color: #1d1d1f;
+  background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.35) 100%);
+}
 .tab.active {
-  color: #c00000; font-weight: 600;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1);
+  color: #c00000; font-weight: 700;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,246,222,0.92) 100%);
+  border-color: rgba(201, 162, 39, 0.65);
+  box-shadow: 0 3px 10px rgba(201,162,39,0.25), 0 1px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1);
 }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; animation: fadeIn 0.15s ease; }
@@ -288,14 +293,12 @@ textarea { resize: vertical; min-height: 60px; }
     <section class="form-panel">
       <div class="form-body">
         <!-- Tabs -->
-        <div class="tabs-sticky">
-          <div class="tabs" id="tabs">
-            <button type="button" class="tab active" data-tab="customer">Customer</button>
-            <button type="button" class="tab" data-tab="product">Product</button>
-            <button type="button" class="tab" data-tab="specs">Specs</button>
-            <button type="button" class="tab" data-tab="colors">Colors</button>
-            <button type="button" class="tab" data-tab="payment">Payment</button>
-          </div>
+        <div class="tabs" id="tabs">
+          <button type="button" class="tab active" data-tab="customer">Customer</button>
+          <button type="button" class="tab" data-tab="product">Product</button>
+          <button type="button" class="tab" data-tab="specs">Specs</button>
+          <button type="button" class="tab" data-tab="colors">Colors</button>
+          <button type="button" class="tab" data-tab="payment">Payment</button>
         </div>
 
         <!-- ===== Customer Tab ===== -->
@@ -755,7 +758,7 @@ textarea { resize: vertical; min-height: 60px; }
     padding: 6pt 8pt;
     font-size: 14pt;
     font-weight: 700;
-    min-height: 26pt;
+    min-height: 30pt;
     display: flex;
     align-items: center;
     gap: 6pt;
@@ -775,8 +778,33 @@ textarea { resize: vertical; min-height: 60px; }
     display: inline-block;
     flex-shrink: 0;
   }
-  .blue-box { background: #0066cc; }
   .opt-box.empty { background: #fff; }
+
+  /* Product Type answers only: bigger checkmark-style box (not a plain
+     filled square) so a selected item is unmistakably different from
+     every other answer in the exported image. */
+  .opt-box-product {
+    width: 18pt; height: 18pt;
+    background: #fff;
+    border: 1.75pt solid #000;
+    border-radius: 3pt;
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .opt-box-product-tick {
+    display: none;
+    position: absolute;
+    left: 3.5pt; top: 1.5pt;
+    width: 6pt; height: 11.5pt;
+    border: solid #c00000;
+    border-width: 0 3.5pt 3.5pt 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+  .opt-box-product-tick.blue { border-color: #0066cc; }
+  .opt-box-product:not(.empty) .opt-box-product-tick { display: block; }
+  .spec-product-label { font-size: 16pt; font-weight: 800; }
 
   /* Dimensions */
   .dim-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -1009,15 +1037,15 @@ textarea { resize: vertical; min-height: 60px; }
   <div class="band band-large" style="margin-top:6pt;">SPECIFICATIONS</div>
 
   <div class="spec-grid">
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.satchel}}"></span><span class="{{spec.productType.satchel.red}}">SATCHEL</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.bc}}"></span><span class="{{spec.productType.bc.red}}">BC</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.twisted}}"></span><span class="{{spec.productType.twisted.red}}">TWISTED HANDLE</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.flat}}"></span><span class="{{spec.productType.flat.red}}">FLAT HANDLE</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.satchel}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.satchel.red}}">SATCHEL</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.bc}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.bc.red}}">BC</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.twisted}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.twisted.red}}">TWISTED HANDLE</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.flat}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.flat.red}}">FLAT HANDLE</span></span></div>
 
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sos}}"></span><span class="{{spec.productType.sos.red}}">SOS</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sandwichWrap}}"></span><span class="{{spec.productType.sandwichWrap.red}}">SANDWICH WRAP</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.othersPaperCup}} {{spec.productType.othersPaperCup.box}}"></span><span class="{{spec.productType.othersPaperCup.blue}}" style="white-space:nowrap;">(PAPER CUP)</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.others}}"></span><span class="{{spec.productType.others.red}}">OTHERS</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.sos}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.sos.red}}">SOS</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.sandwichWrap}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.sandwichWrap.red}}">SANDWICH WRAP</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.othersPaperCup}}"><span class="opt-box-product-tick {{spec.productType.othersPaperCup.blue}}"></span></span><span class="spec-product-label {{spec.productType.othersPaperCup.blue}}" style="white-space:nowrap;">(PAPER CUP)</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.others}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.others.red}}">OTHERS</span></span></div>
 
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.white}}"></span><span class="{{spec.paperType.white.red}}">WHITE</span></span></div>
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.brown}}"></span><span class="{{spec.paperType.brown.red}}">BROWN</span></span></div>
@@ -1381,7 +1409,6 @@ textarea { resize: vertical; min-height: 60px; }
           // (PAPER CUP) uses a blue highlight instead of red.
           tokens['{{spec.' + group + '.' + opt + '.red}}'] = '';
           tokens['{{spec.' + group + '.' + opt + '.blue}}'] = isSelected ? 'blue' : '';
-          tokens['{{spec.' + group + '.' + opt + '.box}}'] = isSelected ? 'blue-box' : '';
         } else {
           tokens['{{spec.' + group + '.' + opt + '.red}}'] = isSelected ? 'red' : '';
         }
