@@ -115,7 +115,7 @@ a { color: var(--primary); }
 
 /* ===== Tabs (Apple liquid glass pills) ===== */
 .tabs {
-  display: flex; gap: 2px; margin-bottom: 16px;
+  display: flex; gap: 2px;
   padding: 4px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px) saturate(180%);
@@ -125,6 +125,12 @@ a { color: var(--primary); }
   box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  /* Sticky header: stays pinned to the top of the scrolling form
+     panel instead of scrolling out of view with the content. */
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-bottom: 16px;
 }
 .tab {
   background: transparent; border: 0; padding: 8px 14px;
