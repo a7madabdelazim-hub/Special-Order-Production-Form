@@ -20,7 +20,6 @@
   --border: #e4e6eb;
   --muted: #6b7280;
   --primary: #c00000;
-  --primary-hover: #a00000;
   --accent: #fef2f2;
   --text: #111827;
   --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
@@ -1692,6 +1691,8 @@ textarea { resize: vertical; min-height: 60px; }
   function newForm() {
     state.form = emptyForm();
     syncAllInputs();
+    clearInvalidHighlights();   // don't carry red "missing field" outlines into the fresh form
+    fillOrderDateIfEmpty();     // Order Date should auto-fill again, same as on initial load
     updateEditingName();
     schedulePreview();
     toast('Started a new blank form');
@@ -1842,15 +1843,7 @@ textarea { resize: vertical; min-height: 60px; }
         const waitForReady = function(cb) {
           try {
             if (doc.fonts && doc.fonts.ready) {
-              doc.fonts.ready.then(function() {
-                const img = target.querySelector('img');
-                if (img && !img.complete) {
-                  img.onload = function() { afterLayoutSettles(cb); };
-                  img.onerror = function() { afterLayoutSettles(cb); };
-                } else {
-                  afterLayoutSettles(cb);
-                }
-              });
+              doc.fonts.ready.then(function() { afterLayoutSettles(cb); });
             } else {
               setTimeout(cb, 800);
             }
@@ -1936,31 +1929,33 @@ textarea { resize: vertical; min-height: 60px; }
   }
 
   // ===== Init =====
+  // Fills Order Date with today's date if it's empty, and locks the field
+  // read-only. Called on initial load AND from newForm(), so starting a
+  // fresh order via "+ New" also gets today's date instead of being left
+  // blank.
+  function fillOrderDateIfEmpty() {
+    if (!state.form.orderDate) {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      // Same DD-MM-YYYY format used for the EXPECTED DELIVERY DATE answer.
+      state.form.orderDate = dd + '-' + mm + '-' + today.getFullYear();
+    }
+    var orderDateInput = document.querySelector('input[data-field="orderDate"]');
+    if (orderDateInput) {
+      orderDateInput.value = state.form.orderDate;
+      orderDateInput.readOnly = true;
+      orderDateInput.style.backgroundColor = '#f0f0f0';
+      orderDateInput.title = 'Auto-filled with today\'s date';
+      orderDateInput.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+  }
+
   function init() {
     initTabs();
     bindTextFields();
     bindRadioGroups();
-
-    // Auto-fill Order Date with today's date -- single call is enough.
-    (function autoFillOrderDate() {
-      if (!state.form.orderDate) {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        // Same DD-MM-YYYY format used for the EXPECTED DELIVERY DATE answer.
-        state.form.orderDate = dd + '-' + mm + '-' + today.getFullYear();
-      }
-      var orderDateInput = document.querySelector('input[data-field="orderDate"]');
-      if (orderDateInput) {
-        orderDateInput.value = state.form.orderDate;
-        orderDateInput.readOnly = true;
-        orderDateInput.style.backgroundColor = '#f0f0f0';
-        orderDateInput.title = 'Auto-filled with today\'s date';
-        orderDateInput.dispatchEvent(new Event('input', { bubbles: true }));
-      }
-      if (typeof updatePreview === 'function') updatePreview();
-      if (typeof schedulePreview === 'function') schedulePreview();
-    })();
+    fillOrderDateIfEmpty();
 
     renderItems();
     renderColors();
