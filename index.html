@@ -115,8 +115,8 @@ a { color: var(--primary); }
 
 /* ===== Tabs (Apple liquid glass pills) ===== */
 .tabs {
-  display: flex; gap: 4px;
-  padding: 5px;
+  display: flex; gap: 3px;
+  padding: 4px;
   margin-bottom: 16px;
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(20px) saturate(180%);
@@ -131,15 +131,17 @@ a { color: var(--primary); }
 }
 .tab {
   position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  text-align: center;
   background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.22) 100%);
   border: 1px solid rgba(255,255,255,0.55);
-  padding: 9px 16px;
-  font-size: 13px; color: #6e6e73; border-radius: 14px;
-  white-space: nowrap; flex-shrink: 0;
+  padding: 9px 2px;
+  font-size: 12px; letter-spacing: -0.1px; color: #6e6e73; border-radius: 14px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   transition: all 0.25s ease; font-family: inherit; cursor: pointer;
   font-weight: 500;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.04);
-  overflow: hidden;
 }
 /* Diagonal glass sheen overlay -- gives each pill a glossy, liquid look
    that's distinct from the flat .btn / .radio-pill surfaces elsewhere. */
@@ -758,7 +760,7 @@ textarea { resize: vertical; min-height: 60px; }
     padding: 6pt 8pt;
     font-size: 14pt;
     font-weight: 700;
-    min-height: 30pt;
+    min-height: 26pt;
     display: flex;
     align-items: center;
     gap: 6pt;
@@ -778,33 +780,8 @@ textarea { resize: vertical; min-height: 60px; }
     display: inline-block;
     flex-shrink: 0;
   }
+  .blue-box { background: #0066cc; }
   .opt-box.empty { background: #fff; }
-
-  /* Product Type answers only: bigger checkmark-style box (not a plain
-     filled square) so a selected item is unmistakably different from
-     every other answer in the exported image. */
-  .opt-box-product {
-    width: 18pt; height: 18pt;
-    background: #fff;
-    border: 1.75pt solid #000;
-    border-radius: 3pt;
-    display: inline-block;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .opt-box-product-tick {
-    display: none;
-    position: absolute;
-    left: 3.5pt; top: 1.5pt;
-    width: 6pt; height: 11.5pt;
-    border: solid #c00000;
-    border-width: 0 3.5pt 3.5pt 0;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-  }
-  .opt-box-product-tick.blue { border-color: #0066cc; }
-  .opt-box-product:not(.empty) .opt-box-product-tick { display: block; }
-  .spec-product-label { font-size: 16pt; font-weight: 800; }
 
   /* Dimensions */
   .dim-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -1037,15 +1014,15 @@ textarea { resize: vertical; min-height: 60px; }
   <div class="band band-large" style="margin-top:6pt;">SPECIFICATIONS</div>
 
   <div class="spec-grid">
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.satchel}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.satchel.red}}">SATCHEL</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.bc}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.bc.red}}">BC</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.twisted}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.twisted.red}}">TWISTED HANDLE</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.flat}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.flat.red}}">FLAT HANDLE</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.satchel}}"></span><span class="{{spec.productType.satchel.red}}">SATCHEL</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.bc}}"></span><span class="{{spec.productType.bc.red}}">BC</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.twisted}}"></span><span class="{{spec.productType.twisted.red}}">TWISTED HANDLE</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.flat}}"></span><span class="{{spec.productType.flat.red}}">FLAT HANDLE</span></span></div>
 
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.sos}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.sos.red}}">SOS</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.sandwichWrap}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.sandwichWrap.red}}">SANDWICH WRAP</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.othersPaperCup}}"><span class="opt-box-product-tick {{spec.productType.othersPaperCup.blue}}"></span></span><span class="spec-product-label {{spec.productType.othersPaperCup.blue}}" style="white-space:nowrap;">(PAPER CUP)</span></span></div>
-    <div class="spec-cell"><span class="opt"><span class="opt-box-product {{spec.productType.others}}"><span class="opt-box-product-tick"></span></span><span class="spec-product-label {{spec.productType.others.red}}">OTHERS</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sos}}"></span><span class="{{spec.productType.sos.red}}">SOS</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.sandwichWrap}}"></span><span class="{{spec.productType.sandwichWrap.red}}">SANDWICH WRAP</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.othersPaperCup}} {{spec.productType.othersPaperCup.box}}"></span><span class="{{spec.productType.othersPaperCup.blue}}" style="white-space:nowrap;">(PAPER CUP)</span></span></div>
+    <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.productType.others}}"></span><span class="{{spec.productType.others.red}}">OTHERS</span></span></div>
 
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.white}}"></span><span class="{{spec.paperType.white.red}}">WHITE</span></span></div>
     <div class="spec-cell"><span class="opt"><span class="opt-box {{spec.paperType.brown}}"></span><span class="{{spec.paperType.brown.red}}">BROWN</span></span></div>
@@ -1409,6 +1386,7 @@ textarea { resize: vertical; min-height: 60px; }
           // (PAPER CUP) uses a blue highlight instead of red.
           tokens['{{spec.' + group + '.' + opt + '.red}}'] = '';
           tokens['{{spec.' + group + '.' + opt + '.blue}}'] = isSelected ? 'blue' : '';
+          tokens['{{spec.' + group + '.' + opt + '.box}}'] = isSelected ? 'blue-box' : '';
         } else {
           tokens['{{spec.' + group + '.' + opt + '.red}}'] = isSelected ? 'red' : '';
         }
