@@ -114,6 +114,17 @@ a { color: var(--primary); }
 .form-body { flex: 1; overflow-y: auto; padding: 20px; }
 
 /* ===== Tabs (Apple liquid glass pills) ===== */
+/* iOS Safari will NOT keep an element sticky if that same element also has
+   its own overflow-x/y set to auto/scroll -- the sticky positioning is
+   silently dropped. So the sticky behavior lives on an outer wrapper with
+   no overflow of its own, and the horizontal tab-scrolling lives on the
+   inner .tabs pill. */
+.tabs-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin-bottom: 16px;
+}
 .tabs {
   display: flex; gap: 2px;
   padding: 4px;
@@ -125,12 +136,6 @@ a { color: var(--primary); }
   box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  /* Sticky header: stays pinned to the top of the scrolling form
-     panel instead of scrolling out of view with the content. */
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  margin-bottom: 16px;
 }
 .tab {
   background: transparent; border: 0; padding: 8px 14px;
@@ -163,6 +168,19 @@ label.field-label {
   color: var(--text); margin-bottom: 4px;
 }
 .req-star { color: #c00000; font-weight: 700; margin-left: 2px; }
+
+/* ===== Required-field highlighting (applied on failed export validation) ===== */
+input.invalid-highlight, textarea.invalid-highlight, select.invalid-highlight {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(192,0,0,0.15) !important;
+}
+/* Group containers (radio rows, checkbox rows, payment rows) get an outline
+   since they wrap multiple inputs rather than being one themselves. */
+div.invalid-highlight {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
 input[type="text"], input[type="number"], input[type="date"], textarea, select {
   width: 100%; padding: 8px 10px; border: 1px solid var(--border);
   border-radius: 6px; background: var(--panel); color: var(--text);
@@ -266,12 +284,14 @@ textarea { resize: vertical; min-height: 60px; }
     <section class="form-panel">
       <div class="form-body">
         <!-- Tabs -->
-        <div class="tabs" id="tabs">
-          <button type="button" class="tab active" data-tab="customer">Customer</button>
-          <button type="button" class="tab" data-tab="product">Product</button>
-          <button type="button" class="tab" data-tab="specs">Specs</button>
-          <button type="button" class="tab" data-tab="colors">Colors</button>
-          <button type="button" class="tab" data-tab="payment">Payment</button>
+        <div class="tabs-sticky">
+          <div class="tabs" id="tabs">
+            <button type="button" class="tab active" data-tab="customer">Customer</button>
+            <button type="button" class="tab" data-tab="product">Product</button>
+            <button type="button" class="tab" data-tab="specs">Specs</button>
+            <button type="button" class="tab" data-tab="colors">Colors</button>
+            <button type="button" class="tab" data-tab="payment">Payment</button>
+          </div>
         </div>
 
         <!-- ===== Customer Tab ===== -->
@@ -335,7 +355,7 @@ textarea { resize: vertical; min-height: 60px; }
         <!-- ===== Product Tab ===== -->
         <div class="tab-panel" data-panel="product">
           <div class="card">
-            <div class="card-title">Product Items (up to 3 rows)</div>
+            <div class="card-title">Product Items (up to 2 rows)</div>
             <div id="itemRows"></div>
           </div>
 
@@ -486,7 +506,7 @@ textarea { resize: vertical; min-height: 60px; }
         <!-- ===== Payment Tab ===== -->
         <div class="tab-panel" data-panel="payment">
           <div class="card">
-            <div class="card-title">Payment Details</div>
+            <div class="card-title">Payment Details <span class="req-star">*</span></div>
             <div id="paymentRows"></div>
           </div>
 
@@ -679,21 +699,6 @@ textarea { resize: vertical; min-height: 60px; }
     display: flex; align-items: center; justify-content: center;
   }
   .order-grid .label-value-cell .red { font-size: 14pt; margin-left: 4pt; }
-
-  .check {
-    display: inline-block;
-    width: 36pt; height: 36pt;
-    position: relative;
-  }
-  .check::before {
-    content: "";
-    position: absolute;
-    left: 8pt; top: 14pt;
-    width: 10pt; height: 18pt;
-    border: solid #c00000;
-    border-width: 0 6pt 6pt 0;
-    transform: rotate(45deg);
-  }
 
   /* Product table */
   .prod-table { width: 100%; border-collapse: collapse; table-layout: fixed; margin-top: 0; }
@@ -1189,9 +1194,7 @@ textarea { resize: vertical; min-height: 60px; }
 
   // ===== State =====
   let state = {
-    form: emptyForm(),
-    activeOrderId: null,
-    orderName: ''
+    form: emptyForm()
   };
 
   // ===== Helpers =====
@@ -1302,7 +1305,6 @@ textarea { resize: vertical; min-height: 60px; }
       })(),
       '{{packingPiecesLabel}}': (function() {
         if (form.packingType === 'pieces' && form.packingValue) return escapeHtml(form.packingValue) + ' PIECES';
-        if (form.packingType === 'pieces') return 'PIECES';
         return 'PIECES';
       })(),
       '{{tubeLengthCm}}': redOr(form.tubeLengthCm),
@@ -1437,11 +1439,11 @@ textarea { resize: vertical; min-height: 60px; }
             '<input type="text" data-item="' + idx + '.product" value="' + escapeHtml(item.product) + '"></div>' +
         '</div>' +
         '<div class="field-row-4">' +
-          '<div class="field"><label class="field-label">Quantity</label>' +
+          '<div class="field"><label class="field-label">Quantity' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
             '<input type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.quantity" value="' + escapeHtml(item.quantity) + '"></div>' +
-          '<div class="field"><label class="field-label">Unit</label>' +
+          '<div class="field"><label class="field-label">Unit' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
             '<input type="text" data-item="' + idx + '.unit" value="' + escapeHtml(item.unit) + '"></div>' +
-          '<div class="field"><label class="field-label">Unit Price</label>' +
+          '<div class="field"><label class="field-label">Unit Price' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
             '<input type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.unitPrice" value="' + escapeHtml(item.unitPrice) + '"></div>' +
           '<div class="field"><label class="field-label">Amount</label>' +
             '<input type="text" data-item="' + idx + '.amount" value="' + escapeHtml(item.amount) + '"></div>' +
@@ -1662,8 +1664,6 @@ textarea { resize: vertical; min-height: 60px; }
   // ===== New (blank) form -- sidebar persistence removed =====
   function newForm() {
     state.form = emptyForm();
-    state.activeOrderId = null;
-    state.orderName = '';
     syncAllInputs();
     updateEditingName();
     schedulePreview();
@@ -1708,41 +1708,66 @@ textarea { resize: vertical; min-height: 60px; }
   }
 
   // ===== Required-field validation =====
+  // Each check carries `selectors` -- CSS selectors for the actual DOM
+  // element(s) to highlight when that field is missing. For single inputs
+  // this is the input itself; for radio/checkbox groups and the payment
+  // section (which have no single input) it's the wrapping container.
   function getRequiredFieldChecks() {
     return [
-      { test: () => !!(state.form.accNo || '').trim(), label: 'ACC. #', tab: 'customer' },
-      { test: () => !!(state.form.customerName || '').trim(), label: 'Customer Name', tab: 'customer' },
-      { test: () => !!state.form.orderType, label: 'Order Type', tab: 'customer' },
-      { test: () => !!(state.form.expectedDeliveryDate || '').trim(), label: 'Expected Delivery Date', tab: 'customer' },
-      { test: () => !!(state.form.destination || '').trim(), label: 'Destination', tab: 'customer' },
-      { test: () => !!(state.form.items[0] && state.form.items[0].product && state.form.items[0].product.trim()), label: 'Product / Item', tab: 'product' },
-      { test: () => !!state.form.artworkChanges, label: 'Artwork Changes', tab: 'product' },
-      { test: () => Array.isArray(state.form.productType) && state.form.productType.length > 0, label: 'Product Type', tab: 'specs' },
-      { test: () => Array.isArray(state.form.paperType) && state.form.paperType.length > 0, label: 'Paper Type', tab: 'specs' },
-      { test: () => !!(state.form.lengthCm || '').trim(), label: 'Length (cm)', tab: 'specs' },
-      { test: () => !!(state.form.widthCm || '').trim(), label: 'Width (cm)', tab: 'specs' },
-      { test: () => !!(state.form.sideGussetCm || '').trim(), label: 'Side Gusset (cm)', tab: 'specs' },
-      { test: () => !!(state.form.colors[0] && state.form.colors[0].code && state.form.colors[0].code.trim()), label: 'Color 1', tab: 'colors' },
-      { test: () => !!state.form.anyChangeInDesign, label: 'Any Change in Design?', tab: 'colors' },
-      { test: () => !!state.form.artworkAttached, label: 'Artwork Attached?', tab: 'colors' },
-      { test: () => !!state.form.sampleAttached, label: 'Sample Approval Attached?', tab: 'colors' },
-      { test: () => !!state.form.colourShadeApproval, label: 'Colour Shade Approval?', tab: 'colors' },
-      { test: () => !!(state.form.signatures.salesman || '').trim(), label: 'Salesman', tab: 'payment' }
+      { test: () => !!(state.form.accNo || '').trim(), label: 'ACC. #', tab: 'customer', selectors: ['input[data-field="accNo"]'] },
+      { test: () => !!(state.form.customerName || '').trim(), label: 'Customer Name', tab: 'customer', selectors: ['input[data-field="customerName"]'] },
+      { test: () => !!state.form.orderType, label: 'Order Type', tab: 'customer', selectors: ['#orderTypeGroup'] },
+      { test: () => !!(state.form.expectedDeliveryDate || '').trim(), label: 'Expected Delivery Date', tab: 'customer', selectors: ['input[data-field="expectedDeliveryDate"]'] },
+      { test: () => !!(state.form.destination || '').trim(), label: 'Destination', tab: 'customer', selectors: ['input[data-field="destination"]'] },
+      { test: () => !!(state.form.items[0] && state.form.items[0].product && state.form.items[0].product.trim()), label: 'Product / Item (Row 1)', tab: 'product', selectors: ['input[data-item="0.product"]'] },
+      { test: () => !!(state.form.items[0] && state.form.items[0].quantity && state.form.items[0].quantity.trim()), label: 'Quantity (Row 1)', tab: 'product', selectors: ['input[data-item="0.quantity"]'] },
+      { test: () => !!(state.form.items[0] && state.form.items[0].unit && state.form.items[0].unit.trim()), label: 'Unit (Row 1)', tab: 'product', selectors: ['input[data-item="0.unit"]'] },
+      { test: () => !!(state.form.items[0] && state.form.items[0].unitPrice && state.form.items[0].unitPrice.trim()), label: 'Unit Price (Row 1)', tab: 'product', selectors: ['input[data-item="0.unitPrice"]'] },
+      { test: () => !!state.form.artworkChanges, label: 'Artwork Changes', tab: 'product', selectors: ['#artworkChangesGroup'] },
+      { test: () => Array.isArray(state.form.productType) && state.form.productType.length > 0, label: 'Product Type', tab: 'specs', selectors: ['[data-check-group="productType"]'] },
+      { test: () => Array.isArray(state.form.paperType) && state.form.paperType.length > 0, label: 'Paper Type', tab: 'specs', selectors: ['[data-check-group="paperType"]'] },
+      { test: () => !!(state.form.lengthCm || '').trim(), label: 'Length (cm)', tab: 'specs', selectors: ['input[data-field="lengthCm"]'] },
+      { test: () => !!(state.form.widthCm || '').trim(), label: 'Width (cm)', tab: 'specs', selectors: ['input[data-field="widthCm"]'] },
+      { test: () => !!(state.form.sideGussetCm || '').trim(), label: 'Side Gusset (cm)', tab: 'specs', selectors: ['input[data-field="sideGussetCm"]'] },
+      { test: () => !!(state.form.colors[0] && state.form.colors[0].code && state.form.colors[0].code.trim()), label: 'Color 1', tab: 'colors', selectors: ['input[data-color="0"]'] },
+      { test: () => !!state.form.anyChangeInDesign, label: 'Any Change in Design?', tab: 'colors', selectors: ['[data-radio-group="anyChangeInDesign"]'] },
+      { test: () => !!state.form.artworkAttached, label: 'Artwork Attached?', tab: 'colors', selectors: ['[data-radio-group="artworkAttached"]'] },
+      { test: () => !!state.form.sampleAttached, label: 'Sample Approval Attached?', tab: 'colors', selectors: ['[data-radio-group="sampleAttached"]'] },
+      { test: () => !!state.form.colourShadeApproval, label: 'Colour Shade Approval?', tab: 'colors', selectors: ['[data-radio-group="colourShadeApproval"]'] },
+      { test: () => !!(state.form.signatures.salesman || '').trim(), label: 'Salesman', tab: 'payment', selectors: ['input[data-field="signatures.salesman"]'] },
+      { test: () => ['paymentAdvance', 'paymentBalance', 'paymentOther'].some(function(k) { return state.form[k].selected && (state.form[k].value || '').trim(); }), label: 'Payment Details (select Advance / Balance / Other and enter an amount)', tab: 'payment', selectors: ['#paymentRows'] }
     ];
   }
   function switchToTab(tabName) {
     const tabBtn = document.querySelector('#tabs .tab[data-tab="' + tabName + '"]');
     if (tabBtn) tabBtn.click();
   }
-  // Returns true if all required fields are filled. If not, shows a blocking
-  // message listing what's missing and jumps to the first missing field's tab.
+  function clearInvalidHighlights() {
+    document.querySelectorAll('.invalid-highlight').forEach(function(el) {
+      el.classList.remove('invalid-highlight');
+    });
+  }
+  // Removes the highlight from whichever field/group the person just
+  // touched, so it clears the moment they start fixing it (rather than
+  // only on the next export attempt).
+  function clearHighlightOnInteract(e) {
+    const el = e.target && e.target.closest ? e.target.closest('.invalid-highlight') : null;
+    if (el) el.classList.remove('invalid-highlight');
+  }
+  // Returns true if all required fields are filled. If not, highlights the
+  // actual empty fields/groups in red, jumps to the first missing field's
+  // tab, and shows a brief toast -- no blocking alert.
   function validateRequiredFields() {
+    clearInvalidHighlights();
     const missing = getRequiredFieldChecks().filter(f => !f.test());
     if (missing.length === 0) return true;
+    missing.forEach(function(f) {
+      (f.selectors || []).forEach(function(sel) {
+        document.querySelectorAll(sel).forEach(function(el) { el.classList.add('invalid-highlight'); });
+      });
+    });
     switchToTab(missing[0].tab);
-    const list = missing.map(f => '\u2022 ' + f.label).join('\n');
-    window.alert('Please fill in the required fields (marked with *) before exporting:\n\n' + list);
-    toast('Missing required fields — export cancelled', 'error');
+    toast(missing.length + ' required field' + (missing.length > 1 ? 's' : '') + ' missing — check the highlighted fields', 'error');
     return false;
   }
 
@@ -1920,6 +1945,15 @@ textarea { resize: vertical; min-height: 60px; }
     document.getElementById('btnNew').addEventListener('click', newForm);
     document.getElementById('btnExport').addEventListener('click', exportPng);
     document.getElementById('btnRefreshPreview').addEventListener('click', updatePreview);
+
+    // Clear a field's red "missing" highlight as soon as the person
+    // interacts with it (single delegated listener covers every field,
+    // including dynamically-rendered item/color/payment rows).
+    const formBody = document.querySelector('.form-body');
+    if (formBody) {
+      formBody.addEventListener('input', clearHighlightOnInteract, true);
+      formBody.addEventListener('change', clearHighlightOnInteract, true);
+    }
   }
 
   if (document.readyState === 'loading') {
