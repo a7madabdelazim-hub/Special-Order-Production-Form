@@ -534,22 +534,33 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
     margin: 0 auto;
   }
 
-  .red { color: #c00000; font-weight: 700; font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif; font-size: 14pt; }
+  .red { color: #8b0000; font-weight: 700; font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif; font-size: 14pt; }
   .blue { color: #0066cc; font-weight: 700; font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif; font-size: 14pt; }
   /* Highlighted destination value (exported image) */
   .dest-highlight {
+    position: relative;
     display: inline-block;
-    background: #FFE600;
-    color: #c00000;
+    background: #ffffff;
+    color: #8b0000;
     font-weight: 900;
     padding: 1pt 8pt;
-    margin-left: 4pt;
-    border: 1.5pt solid #c00000;
-    border-radius: 4pt;
+    margin-left: 10pt;
+    border: 2pt solid #8b0000;
+    border-radius: 3pt;
     font-size: 13pt;
     letter-spacing: 0.5pt;
     text-transform: uppercase;
-    box-shadow: 0 1pt 2pt rgba(0,0,0,0.15);
+    transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+  }
+  /* Outer ring of the stamp. A positioned pseudo-element is used because
+     html2canvas does not draw spread box-shadows or double borders. */
+  .dest-highlight::before {
+    content: "";
+    position: absolute;
+    left: -4.5pt; right: -4.5pt; top: -4.5pt; bottom: -4.5pt;
+    border: 1.2pt solid #8b0000;
+    border-radius: 5pt;
   }
 
 
@@ -653,7 +664,7 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
     position: absolute;
     left: 6pt; top: 3pt;
     width: 8pt; height: 15pt;
-    border: solid #c00000;
+    border: solid #8b0000;
     border-width: 0 5pt 5pt 0;
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
@@ -686,7 +697,7 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
     font-family: "Calibri", "Carlito", "Liberation Sans", "Arial", sans-serif;
   }
   .artwork-row .aw-label { white-space: nowrap; }
-  .artwork-row .aw-answer { color: #c00000; font-weight: 700; font-size: 14pt; }
+  .artwork-row .aw-answer { color: #8b0000; font-weight: 700; font-size: 14pt; }
 
   /* Spec grid */
   .spec-grid {
@@ -713,7 +724,7 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
   .opt { display: inline-flex; align-items: center; gap: 5pt; }
   .opt-box {
     width: 11pt; height: 11pt;
-    background: #c00000;
+    background: #8b0000;
     border: 1.5pt solid #000;
     display: inline-block;
     flex-shrink: 0;
@@ -815,7 +826,7 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
     background: #fff;
     flex-shrink: 0;
   }
-  .pay-value .box.checked { background: #c00000; }
+  .pay-value .box.checked { background: #8b0000; }
 
   /* Signatures */
   .sig-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; margin-top: 6pt; }
@@ -1221,7 +1232,7 @@ div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-
 
   function renderPdfHtml(form) {
     // Order-type tick: red with a black outline (two stacked strokes per arm).
-    var CHECKMARK_IMG = '<span style="display:inline-block;position:relative;width:33pt;height:26pt;"><span style="position:absolute;left:-1.05pt;top:13.25pt;width:18.61pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:4.06pt;top:8.25pt;width:31.38pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span><span style="position:absolute;left:0.45pt;top:14.75pt;width:15.61pt;height:5.00pt;background:#c00000;border-radius:2.50pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:5.56pt;top:9.75pt;width:28.38pt;height:5.00pt;background:#c00000;border-radius:2.50pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span></span>';
+    var CHECKMARK_IMG = '<span style="display:inline-block;position:relative;width:33pt;height:26pt;"><span style="position:absolute;left:-1.05pt;top:13.25pt;width:18.61pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:4.06pt;top:8.25pt;width:31.38pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span><span style="position:absolute;left:0.45pt;top:14.75pt;width:15.61pt;height:5.00pt;background:#8b0000;border-radius:2.50pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:5.56pt;top:9.75pt;width:28.38pt;height:5.00pt;background:#8b0000;border-radius:2.50pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span></span>';
     let html = getPdfTemplate();
     // Single-pass replacement of {{...}} tokens
     const tokens = {
