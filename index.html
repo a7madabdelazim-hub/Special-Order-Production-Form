@@ -2,564 +2,503 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
   <link rel="icon" type="image/png" href="data:image/png;base64,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" />
   <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,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" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="SOM" />
+  <meta name="theme-color" content="#172554" />
 <title>Special Order Management (SOM) — MESHRAQ PAPER BAGS &amp; SHEETS</title>
 <style>
 /* ============================================================
-   APP UI STYLES (the form editor — NOT the PDF output)
+   APP UI STYLES — JOB ORDER design (navy + neutral).
+   Editor only. The export template lives in its own iframe document
+   with its own <style>, so nothing here can reach the exported image.
    ============================================================ */
-* { box-sizing: border-box; }
-:root {
-  --bg: #f6f7f9;
-  --panel: #ffffff;
-  --border: #e4e6eb;
-  --muted: #6b7280;
-  --primary: #c00000;
-  --accent: #fef2f2;
-  --text: #111827;
-  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f1f5f9; color: #0f172a; font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased; touch-action: manipulation; overscroll-behavior-y: none;
+  --c: #1e3a8a; --c-soft: #dbeafe; --c-ink: #1e3a8a;
 }
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Carlito", "Calibri", Roboto, Helvetica, Arial, sans-serif;
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
-button { font-family: inherit; cursor: pointer; }
-input, textarea, select { font-family: inherit; font-size: 16px; }
-a { color: var(--primary); }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, textarea { font-family: inherit; font-size: 16px; }
 
-/* ===== Layout ===== */
-.app { display: flex; flex-direction: column; min-height: 100vh; }
-.header {
-  position: sticky; top: 0; z-index: 40;
-  padding: 8px 12px;
-  background: rgba(245, 245, 247, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+/* Top bar */
+.topbar {
+  background: #172554; color: #fff; border-bottom: 3px solid #eab308;
+  position: sticky; top: 0; z-index: 30;
+  padding: 10px 16px; padding-top: max(10px, env(safe-area-inset-top));
+  padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right));
 }
-.glass-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
-  overflow: hidden;
-}
-.header-row2 {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 8px; padding: 10px 14px 14px 14px;
-}
-.header-row2 .btn {
-  padding: 10px 14px; border-radius: 14px;
-  font-size: 14px; font-weight: 600; border: none;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  transition: all 0.15s ease; cursor: pointer;
-  letter-spacing: -0.1px; font-family: inherit;
-}
-.header-row2 .btn:active { transform: scale(0.95); }
-.btn-glass {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(10px) saturate(150%);
-  color: #1d1d1f;
-  border: 1px solid rgba(255,255,255,0.7);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
-}
-.btn-liquid-red {
-  background: linear-gradient(180deg, #e02020 0%, #c00000 50%, #a00000 100%);
-  color: #fff;
-  box-shadow: 0 3px 10px rgba(192,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 0 rgba(0,0,0,0.15);
-  text-shadow: 0 1px 1px rgba(0,0,0,0.15);
-}
-@media (min-width: 768px) {
-  .header { padding: 10px 20px; }
-  .glass-card { display: flex; align-items: center; }
-  .editing-bar { flex: 1; border-bottom: none; }
-  .header-row2 { grid-template-columns: repeat(4, auto); padding: 8px 14px; gap: 8px; }
-  .header-row2 .btn { padding: 8px 16px; }
-}
-
-.body { flex: 1; display: flex; min-height: 0; }
-
-/* ===== Form panel ===== */
-.form-panel { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-/* ===== Export Filename Preview (read-only, fully automatic) ===== */
-.editing-bar {
-  display: flex; align-items: center; gap: 8px;
-  padding: 10px 14px;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(10px) saturate(150%);
-}
-.editing-icon { font-size: 18px; line-height: 1; flex-shrink: 0; }
-.editing-label {
-  flex: 1; min-width: 0;
-  font-size: 13px; font-weight: 500;
-  color: var(--muted);
-  text-transform: uppercase; letter-spacing: 0.04em;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.form-body { flex: 1; overflow-y: auto; padding: 20px; }
-
-/* ===== Tabs (Apple liquid glass pills) ===== */
-.tabs {
-  display: flex; gap: 3px;
-  padding: 4px;
-  margin-bottom: 16px;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  /* Bold gold rim -- deliberately different from the app's red accent so
-     the tab bar reads as its own distinct "liquid glass" surface. */
-  border: 2px solid rgba(201, 162, 39, 0.6);
-  border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(201,162,39,0.18), 0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.tab {
-  position: relative;
-  flex: 1 1 0%;
-  min-width: 0;
-  text-align: center;
-  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.22) 100%);
-  border: 1px solid rgba(255,255,255,0.55);
-  padding: 9px 2px;
-  font-size: 12px; letter-spacing: -0.1px; color: #6e6e73; border-radius: 14px;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  transition: all 0.25s ease; font-family: inherit; cursor: pointer;
-  font-weight: 500;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.04);
-}
-/* Diagonal glass sheen overlay -- gives each pill a glossy, liquid look
-   that's distinct from the flat .btn / .radio-pill surfaces elsewhere. */
-.tab::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 38%, rgba(255,255,255,0.3) 68%, rgba(255,255,255,0) 100%);
-  pointer-events: none;
-}
-.tab:hover {
-  color: #1d1d1f;
-  background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.35) 100%);
-}
-.tab.active {
-  color: #c00000; font-weight: 700;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,246,222,0.92) 100%);
-  border-color: rgba(201, 162, 39, 0.65);
-  box-shadow: 0 3px 10px rgba(201,162,39,0.25), 0 1px 4px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,1);
-}
-.tab-panel { display: none; }
-.tab-panel.active { display: block; animation: fadeIn 0.15s ease; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* ===== Form controls ===== */
-.field { margin-bottom: 14px; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.field-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-.field-row-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.field-row-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-@media (max-width: 720px) {
-  .field-row, .field-row-3, .field-row-4, .field-row-5 { grid-template-columns: 1fr; }
-}
-label.field-label {
-  display: block; font-size: 12px; font-weight: 500;
-  color: var(--text); margin-bottom: 4px;
-}
-.req-star { color: #c00000; font-weight: 700; margin-left: 2px; }
-
-/* ===== Required-field highlighting (applied on failed export validation) ===== */
-input.invalid-highlight, textarea.invalid-highlight, select.invalid-highlight {
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 3px rgba(192,0,0,0.15) !important;
-}
-/* Group containers (radio rows, checkbox rows, payment rows) get an outline
-   since they wrap multiple inputs rather than being one themselves. */
-div.invalid-highlight {
-  outline: 2px solid var(--primary);
-  outline-offset: 3px;
-  border-radius: 8px;
-}
-input[type="text"], input[type="number"], input[type="date"], textarea, select {
-  width: 100%; padding: 8px 10px; border: 1px solid var(--border);
-  border-radius: 6px; background: var(--panel); color: var(--text);
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-input:focus, textarea:focus, select:focus {
-  outline: none; border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(192,0,0,0.1);
-}
-textarea { resize: vertical; min-height: 60px; }
-
-/* ===== Card / group ===== */
-.card {
-  background: var(--panel); border: 1px solid var(--border);
-  border-radius: 8px; padding: 16px; margin-bottom: 16px;
-}
-.card-title {
-  font-size: 11px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.06em; color: var(--muted); margin: 0 0 12px 0;
-}
-
-/* ===== Radio groups ===== */
-.radio-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-.radio-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px;
-  cursor: pointer; background: var(--panel); font-size: 13px;
-  transition: all 0.15s;
-}
-.radio-pill:hover { border-color: var(--primary); }
-.radio-pill input { margin: 0; }
-.radio-pill.selected { border-color: var(--primary); background: var(--accent); color: var(--primary); font-weight: 500; }
-.radio-pill.blue-selected { border-color: #0066cc; background: rgba(0, 102, 204, 0.10); color: #0066cc; font-weight: 500; }
-
-/* ===== Buttons ===== */
+.topbar-inner { max-width: 1500px; margin: 0 auto; display: flex; align-items: center; gap: 10px; }
+.topbar-logo { width: 34px; height: 44px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.topbar-logo img { width: 26px; height: 37px; object-fit: contain; }
+.topbar-text { flex: 1; min-width: 0; }
+.topbar-title { font-size: 16px; font-weight: 700; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.topbar-sub { font-size: 12px; color: #dbeafe; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border);
-  background: var(--panel); color: var(--text);
-  font-size: 13px; font-weight: 500; transition: all 0.15s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 44px; padding: 0 16px; border-radius: 12px; font-size: 14px; font-weight: 700; white-space: nowrap;
+  -webkit-user-select: none; user-select: none;
 }
-.btn:hover { background: var(--bg); border-color: #c4c7cc; }
-.btn-sm { padding: 4px 8px; font-size: 12px; }
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.55; pointer-events: none; }
+.btn-ghost { border: 1.5px solid rgba(255,255,255,0.6); color: #fff; }
+.btn-gold { background: #eab308; color: #422006; }
+.btn-back { background: #fff; border: 1.5px solid #cbd5e1; color: #334155; }
+.btn-next { background: var(--c); color: #fff; flex: 1; font-size: 16px; min-height: 50px; }
+.topbar .btn-export { display: none; }
 
-/* ===== Preview panel (desktop) ===== */
-.preview-panel {
-  width: 44%; min-width: 380px; max-width: 720px;
-  border-left: 1px solid var(--border);
-  background: var(--bg); display: flex; flex-direction: column;
-}
-.preview-header {
-  padding: 10px 16px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; gap: 8px; background: var(--panel);
-}
-.preview-header h2 { font-size: 13px; font-weight: 600; margin: 0; }
-.preview-body { flex: 1; overflow: auto; padding: 16px; }
-.preview-frame-wrap {
-  background: #fff; box-shadow: var(--shadow); margin: 0 auto;
-  max-width: 100%;
-}
-.preview-frame-wrap iframe { width: 100%; height: 80vh; border: 0; display: block; background: #fff; }
-
-@media (max-width: 1100px) {
-  .preview-panel { display: none; }
+/* Layout */
+.layout { max-width: 1500px; margin: 0 auto; padding: 12px 12px 110px 12px;
+  padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+.preview-col { display: none; }
+body[data-step="5"] .preview-col { display: block; }
+@media (min-width: 1024px) {
+  .layout { display: grid; grid-template-columns: minmax(420px, 540px) minmax(0, 1fr); gap: 20px; padding: 20px; align-items: start; }
+  .preview-col, body[data-step="5"] .preview-col { display: block; position: sticky; top: 84px; }
+  .topbar .btn-export { display: inline-flex; }
+  .step-actions { position: static !important; padding: 14px 0 0 0 !important; background: none !important; border: none !important; }
+  .stepper { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
+  .step-btn[data-step="5"], .step-panel[data-panel="export"] { display: none !important; }
 }
 
-/* ===== Toast ===== */
-.toast {
-  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
-  background: #1f2937; color: #fff; padding: 10px 16px;
-  border-radius: 6px; font-size: 13px; z-index: 100;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  animation: toastIn 0.2s ease;
+/* Stepper */
+.stepper { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-bottom: 12px; }
+.step-btn {
+  min-height: 56px; border-radius: 12px; padding: 6px 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  font-size: 11px; font-weight: 700; background: #fff; color: #475569; border: 1px solid #e2e8f0;
+  min-width: 0; overflow: hidden;
 }
-.toast.error { background: var(--primary); }
-@keyframes toastIn { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+.step-btn > span:last-child { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.step-btn .num { width: 22px; height: 22px; border-radius: 11px; background: #e2e8f0; color: #334155; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.step-btn.active { background: #1e3a8a; color: #fff; border-color: #1e3a8a; }
+.step-btn.active .num { background: #fff; color: #1e3a8a; }
+@media (max-width: 440px) { .step-btn { font-size: 10px; letter-spacing: -0.02em; padding: 6px 0; } .stepper { gap: 4px; } }
 
-.item-row { border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-bottom: 10px; }
-.item-row h4 { margin: 0 0 8px 0; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+/* Panels + cards */
+.step-panel { display: none; }
+.step-panel.active { display: block; }
+.card { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+.card-head { padding: 12px 16px; font-size: 15px; font-weight: 800; background: #f8fafc; color: #1e3a8a; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 4px; }
+.card-body { padding: 16px; }
+.card.k-purple .card-head { background: #faf5ff; color: #6b21a8; }
+.card.k-teal .card-head { background: #f0fdfa; color: #115e59; }
+.card.k-orange .card-head { background: #fff7ed; color: #9a3412; }
+.card.k-green .card-head { background: #f0fdf4; color: #166534; }
+.card-note { font-size: 13px; color: #475569; margin-bottom: 12px; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-grid.keep3 { grid-template-columns: 1fr 1fr 1fr; }
+@media (max-width: 480px) { .form-grid { grid-template-columns: 1fr; } .form-grid.keep2 { grid-template-columns: 1fr 1fr; } .form-grid.keep3 { grid-template-columns: 1fr 1fr 1fr; } }
+.form-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.form-field.full { grid-column: 1 / -1; }
+.form-label { font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.04em; }
+.req-star { color: #dc2626; font-weight: 800; margin-left: 2px; }
+.form-input, .form-textarea {
+  width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 16px;
+  background: #fff; color: #0f172a; min-height: 44px; -webkit-appearance: none; appearance: none;
+}
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--c); box-shadow: 0 0 0 3px var(--c-soft); }
+.form-input[readonly] { background: #f1f5f9; color: #475569; }
+.form-textarea { min-height: 72px; resize: vertical; }
+.hl-amber .form-input { background: #fffbeb; border-color: #fcd34d; font-weight: 600; } .hl-amber .form-label { color: #92400e; }
+.hl-green .form-input { background: #f0fdf4; border-color: #86efac; font-weight: 600; } .hl-green .form-label { color: #166534; }
+.hl-blue .form-input { background: #eff6ff; border-color: #93c5fd; font-weight: 600; } .hl-blue .form-label { color: #1e3a8a; }
+.hl-purple .form-input { background: #f5f3ff; border-color: #c4b5fd; font-weight: 600; } .hl-purple .form-label { color: #5b21b6; }
+.sub-gap { margin-top: 14px; }
+
+/* Chips. SPEICAL's real radio/checkbox inputs stay inside each chip
+   (visually hidden) so every existing binding and selector still works. */
+.chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  position: relative; display: inline-flex; align-items: center;
+  min-height: 40px; padding: 8px 14px; border-radius: 20px; border: 1.5px solid #cbd5e1; background: #fff; color: #334155;
+  font-size: 14px; font-weight: 600; cursor: pointer; -webkit-user-select: none; user-select: none;
+}
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.chip:focus-within { box-shadow: 0 0 0 3px var(--c-soft); }
+.chip.selected { background: var(--c); border-color: var(--c); color: #fff; }
+.chip.selected::before { content: '\2713\00a0'; font-weight: 800; }
+.chip.blue-selected { background: #0066cc; border-color: #0066cc; color: #fff; }
+.chip.blue-selected::before { content: '\2713\00a0'; font-weight: 800; }
+.chip.unset { color: #64748b; border-style: dashed; }
+.chip.unset.selected { background: #e2e8f0; border-color: #94a3b8; color: #334155; }
+
+/* Product rows + payment lines */
+.item-row { border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+.item-row:last-child { margin-bottom: 0; }
+.item-row-head { font-size: 12px; font-weight: 800; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; }
+.pay-line { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
+.pay-line:last-child { border-bottom: none; }
+.pay-line .pay-chip { min-width: 118px; justify-content: center; flex-shrink: 0; }
+.pay-line .form-input { flex: 1; min-width: 0; }
+
+/* Required-field highlighting (SPEICAL validation, unchanged logic) */
+input.invalid-highlight, textarea.invalid-highlight {
+  border-color: #dc2626 !important; box-shadow: 0 0 0 3px rgba(220,38,38,0.18) !important; background: #fef2f2 !important;
+}
+div.invalid-highlight { outline: 2px solid #dc2626; outline-offset: 4px; border-radius: 10px; }
+
+/* Step actions */
+.step-actions {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; gap: 10px;
+  padding: 10px 12px; padding-bottom: max(10px, env(safe-area-inset-bottom));
+  padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right));
+  background: rgba(255,255,255,0.96); border-top: 1px solid #e2e8f0;
+}
+
+/* Export status (mobile Export step only) */
+.info-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.info { border-radius: 12px; padding: 10px 14px; border: 1.5px solid #e2e8f0; background: #fff; }
+.info .k { font-size: 12px; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.04em; }
+.info .v { font-size: 14px; font-weight: 700; word-break: break-word; }
+.info.ok { background: #f0fdf4; border-color: #86efac; } .info.ok .k, .info.ok .v { color: #166534; }
+.info.warn { background: #fffbeb; border-color: #fcd34d; } .info.warn .k, .info.warn .v { color: #92400e; }
+.info.bad { background: #fef2f2; border-color: #fca5a5; } .info.bad .k, .info.bad .v { color: #991b1b; }
+
+/* Preview pane */
+.preview-pane { background: #fff; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+.preview-head { padding: 10px 16px; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 800; color: #1e3a8a; border-bottom: 1px solid #e2e8f0; }
+.fit-badge { margin-left: auto; font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 999px; }
+.fit-badge.ok { background: #dcfce7; color: #166534; } .fit-badge.warn { background: #fef3c7; color: #92400e; }
+.btn-mini { min-height: 32px; padding: 0 12px; border-radius: 8px; background: var(--c-soft); color: var(--c-ink); font-weight: 700; font-size: 13px; }
+.preview-wrap { background: #cbd5e1; padding: 12px; overflow: auto; -webkit-overflow-scrolling: touch; }
+@media (min-width: 1024px) { .preview-wrap { max-height: calc(100vh - 150px); } }
+.preview-sizer { position: relative; margin: 0 auto; box-shadow: 0 4px 16px rgba(15,23,42,0.25); background: #fff; overflow: hidden; }
+.preview-inner { position: absolute; left: 0; top: 0; width: 794px; transform-origin: top left; }
+.preview-inner iframe { display: block; width: 794px; border: 0; background: #fff; }
+.preview-tap { position: absolute; inset: 0; z-index: 2; }
+.preview-hint { font-size: 12px; color: #475569; text-align: center; padding: 8px; }
+@media (min-width: 1024px) { .preview-hint, .preview-tap { display: none; } }
+
+/* Toast */
+.toast { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); background: #166534; color: #fff; padding: 10px 18px; border-radius: 999px; font-size: 14px; font-weight: 700; z-index: 200; box-shadow: 0 6px 20px rgba(15,23,42,0.3); max-width: calc(100vw - 24px); text-align: center; }
+.toast.error { background: #b91c1c; }
+@media (min-width: 1024px) { .toast { bottom: 28px; } }
+
 </style>
 </head>
-<body>
+<body data-step="0">
 <div class="app" id="app">
 
-  <!-- ===== Header (Apple liquid glass) ===== -->
-  <header class="header">
-    <div class="glass-card">
-      <div class="editing-bar">
-        <span class="editing-icon" aria-hidden="true">&#128196;</span>
-        <span class="editing-label" id="editingName">(fill in Customer Name to see filename)</span>
-      </div>
-      <div class="header-row2">
-        <button type="button" class="btn btn-glass" id="btnNew">+ New</button>
-        <button type="button" class="btn btn-liquid-red" id="btnExport"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="13" height="13" rx="2" fill="white" stroke="white"/><circle cx="4" cy="4" r="1.2" fill="#FFD60A"/><path d="M1 11L4.5 7.5L7 10L9.5 6L13 11V12.5C13 12.78 12.78 13 12.5 13H1.5C1.22 13 1 12.78 1 12.5V11Z" fill="#34C759"/><path d="M1 11L4.5 7.5L7 10L9.5 6L13 11" stroke="#34C759" stroke-width="0.5"/></svg>Image</button>
-      </div>
+  <!-- ===== Top bar (JOB ORDER style). The sub-line is SPEICAL's live export-filename preview. ===== -->
+  <header class="topbar"><div class="topbar-inner">
+    <div class="topbar-logo" id="topbarLogo"></div>
+    <div class="topbar-text">
+      <div class="topbar-title">Special Order Management</div>
+      <div class="topbar-sub" id="editingName">(fill in Customer Name to see filename)</div>
     </div>
-  </header>
+    <button type="button" class="btn btn-ghost" id="btnNew">+ New</button>
+    <button type="button" class="btn btn-gold btn-export" id="btnExport">Export Image</button>
+  </div></header>
 
-  <div class="body">
-    <!-- ===== Form Panel ===== -->
-    <section class="form-panel">
-      <div class="form-body">
-        <!-- Tabs -->
-        <div class="tabs" id="tabs">
-          <button type="button" class="tab active" data-tab="customer">Customer</button>
-          <button type="button" class="tab" data-tab="product">Product</button>
-          <button type="button" class="tab" data-tab="specs">Specs</button>
-          <button type="button" class="tab" data-tab="colors">Colors</button>
-          <button type="button" class="tab" data-tab="payment">Payment</button>
-        </div>
+  <div class="layout">
+    <section class="editor">
+      <nav class="stepper" id="stepper" aria-label="Steps">
+        <button type="button" class="step-btn" data-step="0"><span class="num">1</span><span>Customer</span></button>
+        <button type="button" class="step-btn" data-step="1"><span class="num">2</span><span>Product</span></button>
+        <button type="button" class="step-btn" data-step="2"><span class="num">3</span><span>Specs</span></button>
+        <button type="button" class="step-btn" data-step="3"><span class="num">4</span><span>Colors</span></button>
+        <button type="button" class="step-btn" data-step="4"><span class="num">5</span><span>Payment</span></button>
+        <button type="button" class="step-btn" data-step="5"><span class="num">6</span><span>Export</span></button>
+      </nav>
 
-        <!-- ===== Customer Tab ===== -->
-        <div class="tab-panel active" data-panel="customer">
+      <div class="form-body" id="panels">
+
+        <!-- ===== Step 1: Customer ===== -->
+        <div class="step-panel active" data-panel="customer">
           <div class="card">
-            <div class="card-title">Customer Information</div>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">ACC. # <span class="req-star">*</span></label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="accNo" />
-              </div>
-              <div class="field">
-                <label class="field-label">Customer Name <span class="req-star">*</span></label>
-                <input type="text" data-field="customerName" />
-              </div>
-            </div>
-            <div class="field">
-              <label class="field-label">Order Type <span class="req-star">*</span></label>
-              <div class="radio-row" id="orderTypeGroup" data-radio-group="orderType">
-                <label class="radio-pill"><input type="radio" name="orderType" value="new" /> NEW ORDER</label>
-                <label class="radio-pill"><input type="radio" name="orderType" value="reorder" /> REORDER</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Order Details</div>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">Order Date (auto-filled)</label>
-                <input type="text" data-field="orderDate" />
-              </div>
-              <div class="field">
-                <label class="field-label">Receipt Date</label>
-                <input type="text" data-field="rcptDate" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">Expected Delivery Date <span class="req-star">*</span></label>
-                <input type="date" data-field="expectedDeliveryDate" />
-              </div>
-              <div class="field">
-                <label class="field-label">Destination <span class="req-star">*</span></label>
-                <input type="text" data-field="destination" />
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">Item Code</label>
-                <input type="text" data-field="itemCode" />
-              </div>
-              <div class="field">
-                <label class="field-label">P.O. #</label>
-                <input type="text" data-field="poNumber" placeholder="Purchase order number" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== Product Tab ===== -->
-        <div class="tab-panel" data-panel="product">
-          <div class="card">
-            <div class="card-title">Product Items (up to 2 rows)</div>
-            <div id="itemRows"></div>
-          </div>
-
-          <div class="card">
-            <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-              <div class="card-title" style="margin:0; white-space:nowrap;">Artwork Changes: <span class="req-star">*</span></div>
-              <div class="radio-row" id="artworkChangesGroup" style="flex:1;">
-                <label class="radio-pill"><input type="radio" name="artworkChanges" value="yes" /> YES</label>
-                <label class="radio-pill"><input type="radio" name="artworkChanges" value="no" /> NO</label>
-                <label class="radio-pill"><input type="radio" name="artworkChanges" value="" /> (unset)</label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== Specs Tab ===== -->
-        <div class="tab-panel" data-panel="specs">
-          <div class="card">
-            <div class="card-title">Product Type <span class="req-star">*</span></div>
-            <div class="radio-row" data-check-group="productType">
-              <label class="radio-pill"><input type="checkbox" name="productType" value="satchel" /> SATCHEL</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="sos" /> SOS</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="bc" /> BC</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="sandwichWrap" /> SANDWICH WRAP</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="twisted" /> TWISTED HANDLE</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="flat" /> FLAT HANDLE</label>
-              <label class="radio-pill" data-blue-highlight><input type="checkbox" name="productType" value="othersPaperCup" /> (PAPER CUP)</label>
-              <label class="radio-pill"><input type="checkbox" name="productType" value="others" /> OTHERS</label>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Paper Type <span class="req-star">*</span></div>
-            <div class="radio-row" data-check-group="paperType">
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="white" /> WHITE</label>
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="brown" /> BROWN</label>
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="mg" /> MG</label>
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="aluPaper" /> ALU.+PAPER</label>
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="gp" /> GP</label>
-              <label class="radio-pill"><input type="checkbox" name="paperType" value="pe" /> PE</label>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Dimensions</div>
-            <div class="field-row-4">
-              <div class="field">
-                <label class="field-label">Length (cm) <span class="req-star">*</span></label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="lengthCm" />
-              </div>
-              <div class="field">
-                <label class="field-label">Width (cm) <span class="req-star">*</span></label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="widthCm" />
-              </div>
-              <div class="field">
-                <label class="field-label">Side Gusset (cm) <span class="req-star">*</span></label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="sideGussetCm" />
-              </div>
-              <div class="field">
-                <label class="field-label">Overlap (cm)</label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="overlapCm" />
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Thickness, Packing &amp; Tube Length</div>
-            <div class="field-row-3">
-              <div class="field">
-                <label class="field-label">Thickness</label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="thickness" />
-              </div>
-              <div class="field">
-                <label class="field-label">Packing Type</label>
-                <div class="radio-row" data-radio-group="packingType">
-                  <label class="radio-pill"><input type="radio" name="packingType" value="kg" /> KG</label>
-                  <label class="radio-pill"><input type="radio" name="packingType" value="pieces" /> PIECES</label>
-                  <label class="radio-pill"><input type="radio" name="packingType" value="" /> (unset)</label>
+            <div class="card-head">Customer Information</div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label class="form-label">ACC. # <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="accNo" />
                 </div>
-              </div>
-              <div class="field">
-                <label class="field-label">Packing Value</label>
-                <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="packingValue" />
-              </div>
-            </div>
-            <div class="field">
-              <label class="field-label">Tube Length (cm)</label>
-              <input type="text" inputmode="decimal" pattern="[0-9.]*" data-field="tubeLengthCm" />
-            </div>
-          </div>
-        </div>
-
-        <!-- ===== Colors Tab ===== -->
-        <div class="tab-panel" data-panel="colors">
-          <div class="card">
-            <div class="card-title">Printing Colors (Pantone codes)</div>
-            <div class="field-row-5" id="colorRows"></div>
-            <div class="field" style="margin-top:12px;">
-              <label class="field-label">Color Remarks</label>
-              <textarea data-field="colorRemarks" placeholder="Notes about printing colors" rows="2"></textarea>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Design &amp; Approval</div>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">Any Change in Design? <span class="req-star">*</span></label>
-                <div class="radio-row" data-radio-group="anyChangeInDesign">
-                  <label class="radio-pill"><input type="radio" name="anyChangeInDesign" value="yes" /> YES</label>
-                  <label class="radio-pill"><input type="radio" name="anyChangeInDesign" value="no" /> NO</label>
-                  <label class="radio-pill"><input type="radio" name="anyChangeInDesign" value="" /> (unset)</label>
+                <div class="form-field">
+                  <label class="form-label">Customer Name <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" data-field="customerName" />
                 </div>
-              </div>
-              <div class="field">
-                <label class="field-label">Artwork Attached? <span class="req-star">*</span></label>
-                <div class="radio-row" data-radio-group="artworkAttached">
-                  <label class="radio-pill"><input type="radio" name="artworkAttached" value="yes" /> YES</label>
-                  <label class="radio-pill"><input type="radio" name="artworkAttached" value="no" /> NO</label>
-                  <label class="radio-pill"><input type="radio" name="artworkAttached" value="" /> (unset)</label>
-                </div>
-              </div>
-              <div class="field">
-                <label class="field-label">Sample Approval Attached? <span class="req-star">*</span></label>
-                <div class="radio-row" data-radio-group="sampleAttached">
-                  <label class="radio-pill"><input type="radio" name="sampleAttached" value="yes" /> YES</label>
-                  <label class="radio-pill"><input type="radio" name="sampleAttached" value="no" /> NO</label>
-                  <label class="radio-pill"><input type="radio" name="sampleAttached" value="" /> (unset)</label>
-                </div>
-              </div>
-              <div class="field">
-                <label class="field-label">Colour Shade Approval? <span class="req-star">*</span></label>
-                <div class="radio-row" data-radio-group="colourShadeApproval">
-                  <label class="radio-pill"><input type="radio" name="colourShadeApproval" value="yes" /> YES</label>
-                  <label class="radio-pill"><input type="radio" name="colourShadeApproval" value="no" /> NO</label>
-                  <label class="radio-pill"><input type="radio" name="colourShadeApproval" value="" /> (unset)</label>
+                <div class="form-field full">
+                  <label class="form-label">Order Type <span class="req-star">*</span></label>
+                  <div class="chip-group radio-row" id="orderTypeGroup" data-radio-group="orderType">
+                    <label class="chip radio-pill"><input type="radio" name="orderType" value="new" /> NEW ORDER</label>
+                    <label class="chip radio-pill"><input type="radio" name="orderType" value="reorder" /> REORDER</label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="card">
-            <div class="card-title">Additional Remarks</div>
-            <textarea data-field="additionalRemarks" placeholder="Any other production notes…" rows="4"></textarea>
-          </div>
-        </div>
-
-        <!-- ===== Payment Tab ===== -->
-        <div class="tab-panel" data-panel="payment">
-          <div class="card">
-            <div class="card-title">Payment Details <span class="req-star">*</span></div>
-            <div id="paymentRows"></div>
-          </div>
-
-          <div class="card">
-            <div class="card-title">Signatures</div>
-            <p style="font-size:12px; color:var(--muted); margin:0 0 12px 0;">
-              Type each signatory's name. The PDF will show a signature line with the printed name underneath.
-            </p>
-            <div class="field-row">
-              <div class="field">
-                <label class="field-label">Salesman <span class="req-star">*</span></label>
-                <input type="text" data-field="signatures.salesman" placeholder="Salesman name" />
-              </div>
-              <div class="field">
-                <label class="field-label">Sales Supervisor</label>
-                <input type="text" data-field="signatures.salesSupervisor" placeholder="Supervisor name" />
-              </div>
-              <div class="field">
-                <label class="field-label">Sales Manager</label>
-                <input type="text" data-field="signatures.salesManager" placeholder="Manager name" />
-              </div>
-              <div class="field">
-                <label class="field-label">Production Manager</label>
-                <input type="text" data-field="signatures.productionManager" placeholder="Production manager name" />
+            <div class="card-head">Order Details</div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-field">
+                  <label class="form-label">Order Date (auto-filled)</label>
+                  <input class="form-input" type="text" data-field="orderDate" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Receipt Date</label>
+                  <input class="form-input" type="text" data-field="rcptDate" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Expected Delivery Date <span class="req-star">*</span></label>
+                  <input class="form-input" type="date" data-field="expectedDeliveryDate" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Destination <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" data-field="destination" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Item Code</label>
+                  <input class="form-input" type="text" data-field="itemCode" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">P.O. #</label>
+                  <input class="form-input" type="text" data-field="poNumber" placeholder="Purchase order number" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- ===== Step 2: Product ===== -->
+        <div class="step-panel" data-panel="product">
+          <div class="card">
+            <div class="card-head">Product Items (up to 2 rows)</div>
+            <div class="card-body"><div id="itemRows"></div></div>
+          </div>
+
+          <div class="card k-orange">
+            <div class="card-head">Artwork Changes: <span class="req-star">*</span></div>
+            <div class="card-body">
+              <div class="chip-group radio-row" id="artworkChangesGroup">
+                <label class="chip radio-pill"><input type="radio" name="artworkChanges" value="yes" /> YES</label>
+                <label class="chip radio-pill"><input type="radio" name="artworkChanges" value="no" /> NO</label>
+                <label class="chip radio-pill unset"><input type="radio" name="artworkChanges" value="" /> (unset)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Step 3: Specs ===== -->
+        <div class="step-panel" data-panel="specs">
+          <div class="card k-purple">
+            <div class="card-head">Product Type <span class="req-star">*</span></div>
+            <div class="card-body">
+              <div class="chip-group radio-row" data-check-group="productType">
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="satchel" /> SATCHEL</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="sos" /> SOS</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="bc" /> BC</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="sandwichWrap" /> SANDWICH WRAP</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="twisted" /> TWISTED HANDLE</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="flat" /> FLAT HANDLE</label>
+                <label class="chip radio-pill" data-blue-highlight><input type="checkbox" name="productType" value="othersPaperCup" /> (PAPER CUP)</label>
+                <label class="chip radio-pill"><input type="checkbox" name="productType" value="others" /> OTHERS</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card k-teal">
+            <div class="card-head">Paper Type <span class="req-star">*</span></div>
+            <div class="card-body">
+              <div class="chip-group radio-row" data-check-group="paperType">
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="white" /> WHITE</label>
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="brown" /> BROWN</label>
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="mg" /> MG</label>
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="aluPaper" /> ALU.+PAPER</label>
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="gp" /> GP</label>
+                <label class="chip radio-pill"><input type="checkbox" name="paperType" value="pe" /> PE</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Dimensions</div>
+            <div class="card-body">
+              <div class="form-grid keep2">
+                <div class="form-field hl-blue">
+                  <label class="form-label">Length (cm) <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="lengthCm" />
+                </div>
+                <div class="form-field hl-blue">
+                  <label class="form-label">Width (cm) <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="widthCm" />
+                </div>
+                <div class="form-field hl-blue">
+                  <label class="form-label">Side Gusset (cm) <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="sideGussetCm" />
+                </div>
+                <div class="form-field hl-blue">
+                  <label class="form-label">Overlap (cm)</label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="overlapCm" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Thickness, Packing &amp; Tube Length</div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-field full hl-purple">
+                  <label class="form-label">Thickness</label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="thickness" />
+                </div>
+                <div class="form-field full">
+                  <label class="form-label">Packing Type</label>
+                  <div class="chip-group radio-row" data-radio-group="packingType">
+                    <label class="chip radio-pill"><input type="radio" name="packingType" value="kg" /> KG</label>
+                    <label class="chip radio-pill"><input type="radio" name="packingType" value="pieces" /> PIECES</label>
+                    <label class="chip radio-pill unset"><input type="radio" name="packingType" value="" /> (unset)</label>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Packing Value</label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="packingValue" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Tube Length (cm)</label>
+                  <input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-field="tubeLengthCm" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Step 4: Colors ===== -->
+        <div class="step-panel" data-panel="colors">
+          <div class="card k-purple">
+            <div class="card-head">Printing Colors (Pantone codes)</div>
+            <div class="card-body">
+              <div class="form-grid" id="colorRows"></div>
+              <div class="form-field full sub-gap">
+                <label class="form-label">Color Remarks</label>
+                <textarea class="form-textarea" data-field="colorRemarks" placeholder="Notes about printing colors" rows="2"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="card k-teal">
+            <div class="card-head">Design &amp; Approval</div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-field full">
+                  <label class="form-label">Any Change in Design? <span class="req-star">*</span></label>
+                  <div class="chip-group radio-row" data-radio-group="anyChangeInDesign">
+                    <label class="chip radio-pill"><input type="radio" name="anyChangeInDesign" value="yes" /> YES</label>
+                    <label class="chip radio-pill"><input type="radio" name="anyChangeInDesign" value="no" /> NO</label>
+                    <label class="chip radio-pill unset"><input type="radio" name="anyChangeInDesign" value="" /> (unset)</label>
+                  </div>
+                </div>
+                <div class="form-field full">
+                  <label class="form-label">Artwork Attached? <span class="req-star">*</span></label>
+                  <div class="chip-group radio-row" data-radio-group="artworkAttached">
+                    <label class="chip radio-pill"><input type="radio" name="artworkAttached" value="yes" /> YES</label>
+                    <label class="chip radio-pill"><input type="radio" name="artworkAttached" value="no" /> NO</label>
+                    <label class="chip radio-pill unset"><input type="radio" name="artworkAttached" value="" /> (unset)</label>
+                  </div>
+                </div>
+                <div class="form-field full">
+                  <label class="form-label">Sample Approval Attached? <span class="req-star">*</span></label>
+                  <div class="chip-group radio-row" data-radio-group="sampleAttached">
+                    <label class="chip radio-pill"><input type="radio" name="sampleAttached" value="yes" /> YES</label>
+                    <label class="chip radio-pill"><input type="radio" name="sampleAttached" value="no" /> NO</label>
+                    <label class="chip radio-pill unset"><input type="radio" name="sampleAttached" value="" /> (unset)</label>
+                  </div>
+                </div>
+                <div class="form-field full">
+                  <label class="form-label">Colour Shade Approval? <span class="req-star">*</span></label>
+                  <div class="chip-group radio-row" data-radio-group="colourShadeApproval">
+                    <label class="chip radio-pill"><input type="radio" name="colourShadeApproval" value="yes" /> YES</label>
+                    <label class="chip radio-pill"><input type="radio" name="colourShadeApproval" value="no" /> NO</label>
+                    <label class="chip radio-pill unset"><input type="radio" name="colourShadeApproval" value="" /> (unset)</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card k-orange">
+            <div class="card-head">Additional Remarks</div>
+            <div class="card-body">
+              <textarea class="form-textarea" data-field="additionalRemarks" placeholder="Any other production notes…" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Step 5: Payment ===== -->
+        <div class="step-panel" data-panel="payment">
+          <div class="card k-green">
+            <div class="card-head">Payment Details <span class="req-star">*</span></div>
+            <div class="card-body"><div id="paymentRows"></div></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">Signatures</div>
+            <div class="card-body">
+              <p class="card-note">Type each signatory's name. The PDF will show a signature line with the printed name underneath.</p>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label class="form-label">Salesman <span class="req-star">*</span></label>
+                  <input class="form-input" type="text" data-field="signatures.salesman" placeholder="Salesman name" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Sales Supervisor</label>
+                  <input class="form-input" type="text" data-field="signatures.salesSupervisor" placeholder="Supervisor name" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Sales Manager</label>
+                  <input class="form-input" type="text" data-field="signatures.salesManager" placeholder="Manager name" />
+                </div>
+                <div class="form-field">
+                  <label class="form-label">Production Manager</label>
+                  <input class="form-input" type="text" data-field="signatures.productionManager" placeholder="Production manager name" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Step 6: Export (mobile only; desktop has the side preview) ===== -->
+        <div class="step-panel" data-panel="export">
+          <div class="info-grid" id="exportInfo"></div>
+        </div>
+      </div>
+
+      <div class="step-actions">
+        <button type="button" class="btn btn-back" id="btnBack">Back</button>
+        <button type="button" class="btn btn-next" id="btnNext">Next: Product</button>
       </div>
     </section>
 
-    <!-- ===== Preview Panel ===== -->
-    <aside class="preview-panel">
-      <div class="preview-header">
-        <h2>👁 Live Preview</h2>
-        <button type="button" class="btn btn-sm" id="btnRefreshPreview" style="margin-left:auto;">Refresh</button>
-      </div>
-      <div class="preview-body">
-        <div class="preview-frame-wrap">
-          <iframe id="previewFrame" title="PDF Preview"></iframe>
+    <!-- ===== Live preview (sticky beside the editor on desktop; in the Export step on mobile) ===== -->
+    <aside class="preview-col">
+      <div class="preview-pane">
+        <div class="preview-head">
+          <span>Live Preview</span>
+          <span class="fit-badge warn" id="fitBadge">…</span>
+          <button type="button" class="btn-mini" id="btnRefreshPreview">Refresh</button>
         </div>
+        <div class="preview-wrap" id="previewWrap">
+          <div class="preview-sizer" id="previewSizer">
+            <div class="preview-inner" id="previewInner"><iframe id="previewFrame" title="PDF Preview"></iframe></div>
+            <div class="preview-tap" id="previewTap" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="preview-hint">Tap the page to zoom in or out</div>
       </div>
     </aside>
   </div>
 </div>
+
 
 <!-- The PDF template (rendered into the preview iframe and the print window) -->
 <template id="pdfTemplate">
@@ -1281,7 +1220,8 @@ textarea { resize: vertical; min-height: 60px; }
   }
 
   function renderPdfHtml(form) {
-    var CHECKMARK_IMG = '<span class="check-mark"><span class="check-mark-tick"></span></span>';
+    // Order-type tick: red with a black outline (two stacked strokes per arm).
+    var CHECKMARK_IMG = '<span style="display:inline-block;position:relative;width:33pt;height:26pt;"><span style="position:absolute;left:-1.05pt;top:13.25pt;width:18.61pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:4.06pt;top:8.25pt;width:31.38pt;height:8.00pt;background:#000;border-radius:4.00pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span><span style="position:absolute;left:0.45pt;top:14.75pt;width:15.61pt;height:5.00pt;background:#c00000;border-radius:2.50pt;transform:rotate(45.00deg);-webkit-transform:rotate(45.00deg);"></span><span style="position:absolute;left:5.56pt;top:9.75pt;width:28.38pt;height:5.00pt;background:#c00000;border-radius:2.50pt;transform:rotate(131.53deg);-webkit-transform:rotate(131.53deg);"></span></span>';
     let html = getPdfTemplate();
     // Single-pass replacement of {{...}} tokens
     const tokens = {
@@ -1416,7 +1356,7 @@ textarea { resize: vertical; min-height: 60px; }
     // than re-creating the whole iframe (which restarts fonts/layout/scroll).
     if (!previewIframeReady || !iframe.contentDocument) {
       iframe.srcdoc = html;
-      iframe.onload = function() { previewIframeReady = true; };
+      iframe.onload = function() { previewIframeReady = true; afterPreviewRender(); };
       return;
     }
     try {
@@ -1425,6 +1365,7 @@ textarea { resize: vertical; min-height: 60px; }
       const newBodyHtml = extractBodyHtml(html);
       if (newBodyHtml !== null) {
         doc.body.innerHTML = newBodyHtml;
+        afterPreviewRender();
       } else {
         // Fallback: full reload if extraction fails
         iframe.srcdoc = html;
@@ -1436,20 +1377,153 @@ textarea { resize: vertical; min-height: 60px; }
   }
   function extractBodyHtml(fullHtml) {
     const m = fullHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-    return m ? m[1] : null;
+    if (m) return m[1];
+    // <template> parsing strips <html>/<head>/<body>, so the regex above never
+    // matches the real template. Patch the body with what follows </style>.
+    const i = fullHtml.lastIndexOf('</style>');
+    return i >= 0 ? fullHtml.slice(i + 8) : null;
   }
 
-  // ===== Tab switching =====
-  function initTabs() {
-    document.querySelectorAll('#tabs .tab').forEach(function(tab) {
-      tab.addEventListener('click', function() {
-        document.querySelectorAll('#tabs .tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        tab.classList.add('active');
-        const target = tab.getAttribute('data-tab');
-        document.querySelector('.tab-panel[data-panel="' + target + '"]').classList.add('active');
-      });
+  // ===== Steps (JOB ORDER-style flow; replaces the old tab bar) =====
+  // Step keys are the old tab names, so validation's `tab:` values map 1:1.
+  const STEP_KEYS = ['customer', 'product', 'specs', 'colors', 'payment', 'export'];
+  const STEP_LABELS = ['Customer', 'Product', 'Specs', 'Colors', 'Payment', 'Export'];
+  const PAGE_W = Math.ceil(595 * 96 / 72); // 794px, same width the export uses
+  const desktopMq = window.matchMedia('(min-width: 1024px)');
+  let isDesktop = desktopMq.matches;
+  let step = 0;
+  let zoomed = false;
+  let pageH = 0;
+
+  // On desktop the preview sits beside the editor, so there is no Export step.
+  function lastStep() { return isDesktop ? 4 : 5; }
+
+  function setStep(n) {
+    if (isNaN(n)) return;
+    step = Math.max(0, Math.min(lastStep(), n));
+    document.body.setAttribute('data-step', String(step));
+    document.querySelectorAll('.step-btn').forEach(function(b) {
+      const on = Number(b.getAttribute('data-step')) === step;
+      b.classList.toggle('active', on);
+      if (on) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current');
     });
+    document.querySelectorAll('.step-panel').forEach(function(p) {
+      p.classList.toggle('active', p.getAttribute('data-panel') === STEP_KEYS[step]);
+    });
+    document.getElementById('btnBack').style.visibility = step === 0 ? 'hidden' : 'visible';
+    document.getElementById('btnNext').textContent =
+      step === lastStep() ? 'Export Image' : 'Next: ' + STEP_LABELS[step + 1];
+    layoutPreview();
+    if (step === 5) updateExportInfo();
+  }
+  function goStep(n) {
+    if (n < 0) return;
+    setStep(n);
+    window.scrollTo(0, 0);
+  }
+
+  // ----- Preview sizing (on-screen only; the export never reads these styles) -----
+  function previewVisible() {
+    const w = document.getElementById('previewWrap');
+    return !!(w && w.offsetParent !== null);
+  }
+  function measurePage() {
+    try {
+      const doc = document.getElementById('previewFrame').contentDocument;
+      const t = doc && doc.querySelector('.page');
+      if (t && t.scrollHeight) pageH = t.scrollHeight;
+    } catch (e) {}
+    return pageH;
+  }
+  function layoutPreview() {
+    if (!previewVisible()) return;
+    const wrap = document.getElementById('previewWrap');
+    const sizer = document.getElementById('previewSizer');
+    const inner = document.getElementById('previewInner');
+    const frame = document.getElementById('previewFrame');
+    const h = measurePage() || Math.round(PAGE_W * 1.414);
+    frame.style.height = h + 'px';
+    inner.style.height = h + 'px';
+    const avail = wrap.clientWidth - 24;
+    const s = zoomed ? 1 : Math.min(1, Math.max(0.2, avail / PAGE_W));
+    sizer.style.width = (PAGE_W * s) + 'px';
+    sizer.style.height = (h * s) + 'px';
+    inner.style.transform = 'scale(' + s + ')';
+    updateFitBadge();
+  }
+  function afterPreviewRender() {
+    layoutPreview();
+    updateExportInfo();
+  }
+
+  // ----- Export status (mobile Export step) -----
+  function pageInfo() {
+    const h = pageH;
+    if (!h) return { cls: 'warn', text: 'Measuring…', badge: '…' };
+    return {
+      cls: 'ok',
+      text: '1 page · ' + PAGE_W + ' × ' + h + ' px, exported at 4× (' + (PAGE_W * 4) + ' × ' + (h * 4) + ' px)',
+      badge: PAGE_W + ' × ' + h
+    };
+  }
+  function updateFitBadge() {
+    const b = document.getElementById('fitBadge');
+    if (!b) return;
+    const info = pageInfo();
+    b.className = 'fit-badge ' + info.cls;
+    b.textContent = info.badge;
+  }
+  function updateExportInfo() {
+    const box = document.getElementById('exportInfo');
+    if (!box) return;
+    const info = pageInfo();
+    const missing = getRequiredFieldChecks().filter(function(f) { return !f.test(); }).map(function(f) { return f.label; });
+    box.innerHTML =
+      '<div class="info ' + info.cls + '"><div class="k">Page</div><div class="v">' + escapeHtml(info.text) + '</div></div>' +
+      '<div class="info ' + (missing.length ? 'bad' : 'ok') + '"><div class="k">Required fields</div><div class="v">' +
+        (missing.length ? 'Missing ' + missing.length + ': ' + escapeHtml(missing.join(', ')) : 'All complete') + '</div></div>' +
+      '<div class="info"><div class="k">File name</div><div class="v">' + escapeHtml(currentFilename() + '.png') + '</div></div>';
+  }
+
+  function initSteps() {
+    document.getElementById('stepper').addEventListener('click', function(e) {
+      const b = e.target.closest('.step-btn');
+      if (b) goStep(Number(b.getAttribute('data-step')));
+    });
+    document.getElementById('btnBack').addEventListener('click', function() { goStep(step - 1); });
+    document.getElementById('btnNext').addEventListener('click', function() {
+      if (step === lastStep()) exportPng(); else goStep(step + 1);
+    });
+    // "+ New" keeps SPEICAL's newForm() (bound in init); the UI also returns to step 1.
+    document.getElementById('btnNew').addEventListener('click', function() { goStep(0); });
+    // Payment chip look follows its checkbox (state is still written by renderPayments' listener).
+    document.getElementById('paymentRows').addEventListener('change', function(e) {
+      const cb = e.target.closest('input[data-pay-sel]');
+      if (cb && cb.parentNode) cb.parentNode.classList.toggle('selected', cb.checked);
+    });
+    // Mobile: tap the page to zoom in/out.
+    document.getElementById('previewTap').addEventListener('click', function() {
+      if (isDesktop) return;
+      zoomed = !zoomed;
+      layoutPreview();
+    });
+    const onMq = function(e) {
+      isDesktop = e.matches;
+      zoomed = false;
+      setStep(Math.min(step, lastStep()));
+    };
+    if (desktopMq.addEventListener) desktopMq.addEventListener('change', onMq); else desktopMq.addListener(onMq);
+    let resizeRaf = null;
+    window.addEventListener('resize', function() {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(function() { resizeRaf = null; layoutPreview(); });
+    });
+    // Top-bar logo: reuse the Century Gate logo already embedded in the template's watermark.
+    try {
+      const m = document.getElementById('pdfTemplate').innerHTML.match(/url\("(data:image\/png;base64,[^"]+)"\)/);
+      if (m) { const img = new Image(); img.alt = 'Century Gate'; img.src = m[1]; document.getElementById('topbarLogo').appendChild(img); }
+    } catch (e) {}
+    setStep(0);
   }
 
   // ===== Item rows =====
@@ -1459,20 +1533,20 @@ textarea { resize: vertical; min-height: 60px; }
     state.form.items.forEach(function(item, idx) {
       const row = document.createElement('div');
       row.className = 'item-row';
-      row.innerHTML = '<h4>Row ' + (idx + 1) + '</h4>' +
-        '<div class="field-row">' +
-          '<div class="field" style="grid-column: span 2;"><label class="field-label">Product / Item' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
-            '<input type="text" data-item="' + idx + '.product" value="' + escapeHtml(item.product) + '"></div>' +
+      row.innerHTML = '<div class="item-row-head">Row ' + (idx + 1) + '</div>' +
+        '<div class="form-grid">' +
+          '<div class="form-field full"><label class="form-label">Product / Item' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
+            '<input class="form-input" type="text" data-item="' + idx + '.product" value="' + escapeHtml(item.product) + '"></div>' +
         '</div>' +
-        '<div class="field-row-4">' +
-          '<div class="field"><label class="field-label">Quantity' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
-            '<input type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.quantity" value="' + escapeHtml(item.quantity) + '"></div>' +
-          '<div class="field"><label class="field-label">Unit' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
-            '<input type="text" data-item="' + idx + '.unit" value="' + escapeHtml(item.unit) + '"></div>' +
-          '<div class="field"><label class="field-label">Unit Price' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
-            '<input type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.unitPrice" value="' + escapeHtml(item.unitPrice) + '"></div>' +
-          '<div class="field"><label class="field-label">Amount</label>' +
-            '<input type="text" data-item="' + idx + '.amount" value="' + escapeHtml(item.amount) + '"></div>' +
+        '<div class="form-grid keep2 sub-gap">' +
+          '<div class="form-field hl-amber"><label class="form-label">Quantity' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
+            '<input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.quantity" value="' + escapeHtml(item.quantity) + '"></div>' +
+          '<div class="form-field"><label class="form-label">Unit' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
+            '<input class="form-input" type="text" data-item="' + idx + '.unit" value="' + escapeHtml(item.unit) + '"></div>' +
+          '<div class="form-field hl-green"><label class="form-label">Unit Price' + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
+            '<input class="form-input" type="text" inputmode="decimal" pattern="[0-9.]*" data-item="' + idx + '.unitPrice" value="' + escapeHtml(item.unitPrice) + '"></div>' +
+          '<div class="form-field hl-blue"><label class="form-label">Amount</label>' +
+            '<input class="form-input" type="text" data-item="' + idx + '.amount" value="' + escapeHtml(item.amount) + '"></div>' +
         '</div>';
       container.appendChild(row);
     });
@@ -1507,9 +1581,9 @@ textarea { resize: vertical; min-height: 60px; }
     container.innerHTML = '';
     state.form.colors.forEach(function(c, idx) {
       const field = document.createElement('div');
-      field.className = 'field';
-      field.innerHTML = '<label class="field-label">Color ' + (idx + 1) + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
-        '<input type="text" data-color="' + idx + '" value="' + escapeHtml(c.code) + '">';
+      field.className = 'form-field hl-purple';
+      field.innerHTML = '<label class="form-label">Color ' + (idx + 1) + (idx === 0 ? ' <span class="req-star">*</span>' : '') + '</label>' +
+        '<input class="form-input" type="text" data-color="' + idx + '" value="' + escapeHtml(c.code) + '">';
       container.appendChild(field);
     });
     container.querySelectorAll('input[data-color]').forEach(function(input) {
@@ -1533,13 +1607,13 @@ textarea { resize: vertical; min-height: 60px; }
     ].forEach(function(p) {
       const line = state.form[p.key];
       const row = document.createElement('div');
-      row.style.cssText = 'display:flex; gap:12px; align-items:center; padding:8px 0; border-bottom:1px solid var(--border);';
+      row.className = 'pay-line';
       row.innerHTML =
-        '<div style="display:flex; align-items:center; gap:8px; min-width:140px;">' +
+        '<label class="chip pay-chip' + (line.selected ? ' selected' : '') + '" for="pay_' + p.key + '">' +
           '<input type="checkbox" data-pay-sel="' + p.key + '"' + (line.selected ? ' checked' : '') + ' id="pay_' + p.key + '">' +
-          '<label for="pay_' + p.key + '" style="font-weight:500; cursor:pointer;">' + p.label + '</label>' +
-        '</div>' +
-        '<input type="text" data-pay-val="' + p.key + '" placeholder="Amount / note for ' + p.label.toLowerCase() + '" value="' + escapeHtml(line.value) + '" style="flex:1;">';
+          p.label +
+        '</label>' +
+        '<input class="form-input" type="text" data-pay-val="' + p.key + '" placeholder="Amount / note for ' + p.label.toLowerCase() + '" value="' + escapeHtml(line.value) + '">';
       container.appendChild(row);
     });
     container.querySelectorAll('input[data-pay-sel]').forEach(function(input) {
@@ -1767,8 +1841,7 @@ textarea { resize: vertical; min-height: 60px; }
     ];
   }
   function switchToTab(tabName) {
-    const tabBtn = document.querySelector('#tabs .tab[data-tab="' + tabName + '"]');
-    if (tabBtn) tabBtn.click();
+    goStep(STEP_KEYS.indexOf(tabName));
   }
   function clearInvalidHighlights() {
     document.querySelectorAll('.invalid-highlight').forEach(function(el) {
@@ -1945,14 +2018,13 @@ textarea { resize: vertical; min-height: 60px; }
     if (orderDateInput) {
       orderDateInput.value = state.form.orderDate;
       orderDateInput.readOnly = true;
-      orderDateInput.style.backgroundColor = '#f0f0f0';
       orderDateInput.title = 'Auto-filled with today\'s date';
       orderDateInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
   }
 
   function init() {
-    initTabs();
+    initSteps();
     bindTextFields();
     bindRadioGroups();
     fillOrderDateIfEmpty();
